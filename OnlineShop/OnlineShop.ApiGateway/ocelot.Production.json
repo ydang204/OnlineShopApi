@@ -1,0 +1,64 @@
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/{version}/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44344
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/basket/{everything}",
+      "UpstreamHttpMethod": [ "Post", "Put", "Get", "Delete" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44385
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/identity/{everything}",
+      "UpstreamHttpMethod": [ "Post", "Put", "Get", "Delete" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44317
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/ordering/{everything}",
+      "UpstreamHttpMethod": [ "Post", "Put", "Get", "Delete" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44341
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/product/{everything}",
+      "UpstreamHttpMethod": [ "Post", "Put", "Get", "Delete" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44333
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/user/{everything}",
+      "UpstreamHttpMethod": [ "Post", "Put", "Get", "Delete" ]
+    }
+  ]
+}
