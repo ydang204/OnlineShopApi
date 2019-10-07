@@ -6,5 +6,7 @@
 
         public const string API_V1_SPEC = "api/v1/[controller]";
         public const string API_V2_SPEC = "api/v2/[controller]";
+
+        public const string SWAGGER = "Swagger";
     }
 }
