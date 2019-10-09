@@ -18,18 +18,6 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44385
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/identity/{everything}",
-      "UpstreamHttpMethod": [ "Post", "Put", "Get", "Delete" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/{everything}",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
           "Port": 44317
         }
       ],
