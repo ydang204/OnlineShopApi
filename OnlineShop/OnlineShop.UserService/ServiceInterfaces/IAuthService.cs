@@ -11,6 +11,6 @@ namespace OnlineShop.UserService.ServiceInterfaces
     {
         Task RegisterAsync(RegisterReqModel model);
 
-        Task<LoginReqModel> Login(LoginReqModel model);
+        Task<LoginReqModel> LoginAsync(LoginReqModel model);
     }
 }

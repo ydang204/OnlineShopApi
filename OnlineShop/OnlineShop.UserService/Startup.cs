@@ -1,9 +1,14 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OnlineShop.Common.Extensions;
+using OnlineShop.UserService.MappingProfiles;
 using OnlineShop.UserService.Models;
+using OnlineShop.UserService.ServiceInterfaces;
+using OnlineShop.UserService.Services;
+using System.Collections.Generic;
 
 namespace OnlineShop.UserService
 {
@@ -22,7 +27,12 @@ namespace OnlineShop.UserService
             services.AddCustomMvc(Configuration)
                     .AddSwagger(Configuration)
                     .AddCustomOptions(Configuration)
+                    .AddCustomAutoMapper(new List<Profile> { new AccountProfile() })
                     .AddCustomDbContext<UserContext>(Configuration);
+
+
+            services.AddScoped<IAuthService, AuthService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

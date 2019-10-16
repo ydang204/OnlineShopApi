@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using System;
 using System.Collections.Generic;
 
 namespace OnlineShop.Common.Extensions
@@ -113,6 +115,14 @@ namespace OnlineShop.Common.Extensions
                     };
                 };
             });
+
+            return services;
+        }
+
+        public static IServiceCollection AddCustomAutoMapper(this IServiceCollection services, List<Profile> profiles)
+        {
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             return services;
         }
