@@ -20,8 +20,8 @@ namespace OnlineShop.BasketService
         {
             services.AddCustomMvc(Configuration)
                     .AddSwagger(Configuration)
-                    .AddCustomOptions(Configuration)
-                    .AddCustomDbContext(Configuration);
+                    .AddCustomOptions(Configuration);
+                    //.AddCustomDbContext(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
