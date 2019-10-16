@@ -1,12 +1,12 @@
 ﻿using OnlineShop.Common.Models;
 
-namespace OnlineShop.UserService.Model
+namespace OnlineShop.UserService.Models
 {
     public class Account : BaseEntity<int>
     {
         public string UserName { get; set; }
 
-        public string Password { get; set; }
+        public string PasswordHash { get; set; }
 
         public string FullName { get; set; }
 

@@ -15,6 +15,6 @@ namespace OnlineShop.Common.Models
 
         public DateTime ModifiedAt { get; set; }
 
-        public ObjectStatus Status { get; set; }
+        public ObjectStatus ObjectStatus { get; set; }
     }
 }

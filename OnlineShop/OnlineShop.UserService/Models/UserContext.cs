@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace OnlineShop.UserService.Model
+namespace OnlineShop.UserService.Models
 {
     public class UserContext : DbContext
     {

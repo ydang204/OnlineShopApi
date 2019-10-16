@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OnlineShop.Common.Extensions;
-using OnlineShop.UserService.Model;
+using OnlineShop.UserService.Models;
 
 namespace OnlineShop.UserService
 {
