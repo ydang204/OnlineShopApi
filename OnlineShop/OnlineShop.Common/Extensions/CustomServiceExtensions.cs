@@ -4,10 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using OnlineShop.Common.Constants;
+using OnlineShop.Common.SettingOptions;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace OnlineShop.Common.Extensions
 {
@@ -40,7 +43,8 @@ namespace OnlineShop.Common.Extensions
         /// <returns></returns>
         public static IServiceCollection AddCustomDbContext<T>(this IServiceCollection services, IConfiguration configuration) where T : DbContext
         {
-            services.AddDbContext<T>(options=> {
+            services.AddDbContext<T>(options =>
+            {
                 options.UseSqlServer(configuration.GetConnectionString(SharedContant.DEFAULT_CONNECTION_STRING));
             });
             return services;
@@ -121,10 +125,31 @@ namespace OnlineShop.Common.Extensions
             return services;
         }
 
-        public static IServiceCollection AddCustomAutoMapper(this IServiceCollection services, List<Profile> profiles)
+        public static IServiceCollection AddCustomAutoMapper(this IServiceCollection services)
         {
-
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            return services;
+        }
+
+        public static IServiceCollection AddCustomJwtToken(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.Configure<JwtTokenOptions>(options =>
+            {
+                var jwtConfigs = configuration.GetSection("Authentication").GetSection("JWT");
+                var jwtSecretToken = jwtConfigs["SecretKey"];
+                var jwtAudience = jwtConfigs["Audience"];
+                var jwtIssuer = jwtConfigs["Issuer"];
+                var jwtExpiresInDays = int.Parse(jwtConfigs["ExpiresInDays"]);
+
+                // secretKey contains a secret passphrase only your server knows
+                var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSecretToken));
+                options.Audience = jwtAudience;
+                options.Issuer = jwtIssuer;
+                options.Expiration = TimeSpan.FromDays(jwtExpiresInDays);
+                options.ExpiresInDays = jwtExpiresInDays;
+                options.SigningCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);
+            });
 
             return services;
         }
