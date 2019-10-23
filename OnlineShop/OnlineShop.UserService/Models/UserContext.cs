@@ -17,6 +17,7 @@ namespace OnlineShop.UserService.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AccountRole>().HasKey(e => new { e.AccountId, e.RoleId });
+            modelBuilder.Entity<RolePermission>().HasKey(e => new { e.PermissionId, e.RoleId });
             base.OnModelCreating(modelBuilder);
         }
     }
