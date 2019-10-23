@@ -20,11 +20,19 @@ namespace OnlineShop.UserService.Controllers
             _authService = authService;
         }
 
-        [HttpPost("register")]
+        [HttpPost(nameof(Register))]
         public async Task<IActionResult> Register(RegisterReqModel model)
         {
             await _authService.RegisterAsync(model);
             return Ok(new { registerSucceed = true });
+        }
+
+        [HttpPost(nameof(Login))]
+        public async Task<IActionResult> Login(LoginReqModel model)
+        {
+            var response = await _authService.LoginAsync(model);
+
+            return Ok(response);
         }
     }
 }

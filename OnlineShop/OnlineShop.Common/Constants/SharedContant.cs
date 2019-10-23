@@ -1,10 +1,11 @@
-﻿namespace OnlineShop.Common
+﻿namespace OnlineShop.Common.Constants
 {
-    public static class Constants
+    public static class SharedContant
     {
         public const string CORS_POLICY = "CorsPolicy";
 
         public const string API_V1_SPEC = "api/v1/[controller]";
+
         public const string API_V2_SPEC = "api/v2/[controller]";
 
         public const string SWAGGER = "Swagger";

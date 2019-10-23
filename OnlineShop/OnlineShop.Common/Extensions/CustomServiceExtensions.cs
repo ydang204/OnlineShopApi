@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using OnlineShop.Common.Constants;
 using System;
 using System.Collections.Generic;
 
@@ -24,7 +25,7 @@ namespace OnlineShop.Common.Extensions
 
             services.AddCors(options =>
             {
-                options.AddPolicy(Constants.CORS_POLICY,
+                options.AddPolicy(SharedContant.CORS_POLICY,
                     builder => builder.AllowAnyHeader().AllowAnyMethod().AllowCredentials());
             });
 
@@ -40,7 +41,7 @@ namespace OnlineShop.Common.Extensions
         public static IServiceCollection AddCustomDbContext<T>(this IServiceCollection services, IConfiguration configuration) where T : DbContext
         {
             services.AddDbContext<T>(options=> {
-                options.UseSqlServer(configuration.GetConnectionString(Constants.DEFAULT_CONNECTION_STRING));
+                options.UseSqlServer(configuration.GetConnectionString(SharedContant.DEFAULT_CONNECTION_STRING));
             });
             return services;
         }
@@ -56,7 +57,7 @@ namespace OnlineShop.Common.Extensions
         {
             services.AddSwaggerGen(config =>
             {
-                string title = configuration.GetSection($"{Constants.SWAGGER}:Title").Value;
+                string title = configuration.GetSection($"{SharedContant.SWAGGER}:Title").Value;
                 config.SwaggerDoc("v1", new OpenApiInfo { Title = title, Version = "v1" });
                 config.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
@@ -98,6 +99,7 @@ namespace OnlineShop.Common.Extensions
         /// <returns></returns>
         public static IServiceCollection AddCustomOptions(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddRouting(options => options.LowercaseUrls = true);
             services.Configure<ApiBehaviorOptions>(options =>
             {
                 options.InvalidModelStateResponseFactory = context =>

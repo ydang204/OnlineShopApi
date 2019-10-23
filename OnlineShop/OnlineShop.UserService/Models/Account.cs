@@ -1,4 +1,5 @@
 ﻿using OnlineShop.Common.Models;
+using System.Collections.Generic;
 
 namespace OnlineShop.UserService.Models
 {
@@ -15,5 +16,7 @@ namespace OnlineShop.UserService.Models
         public string PhoneNumber { get; set; }
 
         public string Address { get; set; }
+
+        public ICollection<AccountRole> AccountRoles { get; set; }
     }
 }
