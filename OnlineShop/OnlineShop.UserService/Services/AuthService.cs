@@ -28,6 +28,11 @@ namespace OnlineShop.UserService.Services
             _tokenOptions = tokenOptions.Value;
         }
 
+        public Task ForgotPasswordAsync(ForgotPasswordReqModel model)
+        {
+            throw new NotImplementedException();
+        }
+
         public string GenerateToken(Account account)
         {
             // TODO: Complete jwt token generator

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using OnlineShop.Common.Extensions;
 using OnlineShop.UserService.Models.ReqModels;
 using OnlineShop.UserService.ServiceInterfaces;
+using System.Threading.Tasks;
 
 namespace OnlineShop.UserService.Controllers
 {
@@ -33,6 +30,13 @@ namespace OnlineShop.UserService.Controllers
             var response = await _authService.LoginAsync(model);
 
             return Ok(response);
+        }
+
+        [HttpPost("forgot-password")]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordReqModel model)
+        {
+            await _authService.ForgotPasswordAsync(model);
+            return Ok(new { canResetPassword = true });
         }
     }
 }

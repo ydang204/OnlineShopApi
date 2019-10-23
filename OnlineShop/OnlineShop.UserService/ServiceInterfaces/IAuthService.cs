@@ -12,5 +12,12 @@ namespace OnlineShop.UserService.ServiceInterfaces
         Task<LoginResModel> LoginAsync(LoginReqModel model);
 
         string GenerateToken(Account account);
+
+        /// <summary>
+        /// Send email to user's email with the url allow user reset their password
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        Task ForgotPasswordAsync(ForgotPasswordReqModel model);
     }
 }
