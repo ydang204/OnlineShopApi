@@ -1,6 +1,6 @@
 ﻿using OnlineShop.UserService.Models;
 using OnlineShop.UserService.Models.ReqModels;
-using OnlineShop.UserService.Models.ResModel;
+using OnlineShop.UserService.Models.ResModels;
 using System.Threading.Tasks;
 
 namespace OnlineShop.UserService.ServiceInterfaces

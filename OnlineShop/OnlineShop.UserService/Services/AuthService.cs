@@ -6,7 +6,7 @@ using OnlineShop.Common.Resources;
 using OnlineShop.Common.SettingOptions;
 using OnlineShop.UserService.Models;
 using OnlineShop.UserService.Models.ReqModels;
-using OnlineShop.UserService.Models.ResModel;
+using OnlineShop.UserService.Models.ResModels;
 using OnlineShop.UserService.ServiceInterfaces;
 using System;
 using System.Collections.Generic;
