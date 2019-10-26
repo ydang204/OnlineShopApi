@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using OnlineShop.Common.Exceptions;
+using OnlineShop.Common.Resources;
 using OnlineShop.Common.SettingOptions;
 using OnlineShop.UserService.Models;
 using OnlineShop.UserService.Models.ReqModels;
@@ -77,7 +78,7 @@ namespace OnlineShop.UserService.Services
 
             if (account == null)
             {
-                throw new CustomException("11001", "Username or password do not correct");
+                throw new CustomException(Error.USERNAME_PASSWORD_DO_NOT_CORRECT, Error.USERNAME_PASSWORD_DO_NOT_CORRECT_MSG);
             }
 
             var token = GenerateToken(account);
