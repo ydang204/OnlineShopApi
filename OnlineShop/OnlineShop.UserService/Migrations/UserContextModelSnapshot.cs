@@ -21,9 +21,8 @@ namespace OnlineShop.UserService.Migrations
 
             modelBuilder.Entity("OnlineShop.UserService.Models.Account", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address");
 
@@ -58,7 +57,11 @@ namespace OnlineShop.UserService.Migrations
 
                     b.Property<int>("RoleId");
 
+                    b.Property<Guid?>("AccountId1");
+
                     b.HasKey("AccountId", "RoleId");
+
+                    b.HasIndex("AccountId1");
 
                     b.HasIndex("RoleId");
 
@@ -128,8 +131,7 @@ namespace OnlineShop.UserService.Migrations
                 {
                     b.HasOne("OnlineShop.UserService.Models.Account", "Account")
                         .WithMany("AccountRoles")
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("AccountId1");
 
                     b.HasOne("OnlineShop.UserService.Models.Role", "Role")
                         .WithMany("AccountRoles")

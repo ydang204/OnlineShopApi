@@ -1,9 +1,10 @@
 ﻿using OnlineShop.Common.Models;
+using System;
 using System.Collections.Generic;
 
 namespace OnlineShop.UserService.Models
 {
-    public class Account : BaseEntity<int>
+    public class Account : BaseEntity<Guid>
     {
         public string UserName { get; set; }
 
