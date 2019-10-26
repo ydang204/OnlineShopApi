@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace OnlineShop.UserAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
     {

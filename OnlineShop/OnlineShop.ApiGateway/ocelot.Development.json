@@ -2,7 +2,7 @@
   "ReRoutes": [
     {
       "DownstreamPathTemplate": "/api/{version}/{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -14,7 +14,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/{version}/{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -38,11 +38,11 @@
     },
     {
       "DownstreamPathTemplate": "/api/{version}/{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44333
+          "Port": 9001
         }
       ],
       "UpstreamPathTemplate": "/api/{version}/user/{everything}",
