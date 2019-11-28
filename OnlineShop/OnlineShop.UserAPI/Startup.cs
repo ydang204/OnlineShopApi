@@ -57,7 +57,7 @@ namespace OnlineShop.UserAPI
                 c.RoutePrefix = string.Empty;
                 c.DefaultModelsExpandDepth(-1);
             });
-
+            app.UseAuthentication();
             app.UseCustomExceptionHandler();
 
             app.UseMvc();

@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
 
 namespace OnlineShop.Common.Utitlities
 {
-    public class LinqHelper
+    public static class LinqHelper
     {
         public static LambdaExpression GenerateSortSelector<TEntity>(String propertyName, out Type resultType) where TEntity : class
         {
@@ -50,4 +48,3 @@ namespace OnlineShop.Common.Utitlities
         }
     }
 }
-

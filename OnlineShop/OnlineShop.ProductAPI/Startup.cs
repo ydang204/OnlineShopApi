@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using OnlineShop.Common.Extensions;
 using OnlineShop.Common.Middlewares;
 using OnlineShop.ProductAPI.Models;
+using OnlineShop.ProductAPI.ServiceInterfaces;
+using OnlineShop.ProductAPI.Services;
 
 namespace OnlineShop.ProductAPI
 {
@@ -27,6 +29,11 @@ namespace OnlineShop.ProductAPI
                    .AddCustomJwtToken(Configuration)
                    .AddCustomAutoMapper()
                    .AddCustomDbContext<ProductContext>(Configuration);
+
+            // Add services 
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IBrandService, BrandService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,7 +62,7 @@ namespace OnlineShop.ProductAPI
             });
 
             app.UseCustomExceptionHandler();
-
+            app.UseAuthentication();
             app.UseMvc();
 
             UpdateDatabase(app);

@@ -55,7 +55,7 @@ namespace OnlineShop.OrderAPI
             });
 
             app.UseCustomExceptionHandler();
-
+            app.UseAuthentication();
             app.UseMvc();
 
             UpdateDatabase(app);
