@@ -4,6 +4,12 @@ namespace OnlineShop.Common.Models.ProductAPI
 {
     public class Product : BaseEntity<int>
     {
+
+        public Product()
+        {
+            ProductImages = new List<ProductImage>();
+        }
+
         public string Name { get; set; }
 
         public decimal Price { get; set; }
@@ -19,5 +25,7 @@ namespace OnlineShop.Common.Models.ProductAPI
         public int BrandId { get; set; }
 
         public Brand Brand { get; set; }
+
+        
     }
 }
