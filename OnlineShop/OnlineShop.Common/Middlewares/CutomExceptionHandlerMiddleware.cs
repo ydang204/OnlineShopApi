@@ -6,7 +6,7 @@ using System.Text;
 
 namespace OnlineShop.Common.Middlewares
 {
-    public static class CutomExceptionMiddleware
+    public static class CutomExceptionHandlerMiddleware
     {
         public static void UseCustomExceptionHandler(this IApplicationBuilder app)
         {

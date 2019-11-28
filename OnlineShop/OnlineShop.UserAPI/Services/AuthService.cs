@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using OnlineShop.Common.Constants;
 using OnlineShop.Common.Exceptions;
 using OnlineShop.Common.Models.UserAPI;
 using OnlineShop.Common.Models.UserAPI.ReqModels;
@@ -12,7 +13,6 @@ using OnlineShop.UserAPI.ServiceInterfaces;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -49,13 +49,9 @@ namespace OnlineShop.UserAPI.Services
                 new Claim(JwtRegisteredClaimNames.Sub, account.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.UniqueName,account.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Iat, (issuedTime.Subtract(new DateTime(1970,1,1))).TotalSeconds.ToString(), ClaimValueTypes.Integer64),
-                //new Claim(AuthConstants.ACCOUNT_ID_CLAIM_TYPE, model.accountId.ToString()),
-                //new Claim(AuthConstants.ACCOUNT_USERNAME_CLAIM_TYPE, model.userName),
-                //new Claim(AuthConstants.EMPLOYEE_FULLNAME_CLAIM_TYPE, model.fullName),
-                //new Claim(AuthConstants.EMPLOYEE_ID_CLAIM_TYPE, model.employeeId.ToString()),
-                //new Claim(AuthConstants.EMPLOYER_ID_CLAIM_TYPE, model.employerId.ToString()),
-                //new Claim(AuthConstants.EMPLOYEE_DEPARTMENT_CLAIM_TYPE, model.departmentId.ToString()),
-                //new Claim(AuthConstants.EMPLOYEE_BRANCH_CLAIM_TYPE, model.branchId.ToString()),
+                new Claim(AuthConstants.ACCOUNT_ID_CLAIM_TYPE, account.Id.ToString()),
+                new Claim(AuthConstants.ACCOUNT_USERNAME_CLAIM_TYPE, account.UserName),
+                new Claim(AuthConstants.EMPLOYEE_FULLNAME_CLAIM_TYPE, account.FullName ?? "")
             };
             //.Concat(permissions.Select(p => new Claim(ClaimTypes.Role, p)));
 
@@ -80,7 +76,7 @@ namespace OnlineShop.UserAPI.Services
 
             if (account == null)
             {
-                throw new CustomException(Error.USERNAME_PASSWORD_DO_NOT_CORRECT, Error.USERNAME_PASSWORD_DO_NOT_CORRECT_MSG);
+                throw new CustomException(Errors.USERNAME_PASSWORD_DO_NOT_CORRECT, Errors.USERNAME_PASSWORD_DO_NOT_CORRECT_MSG);
             }
 
             var token = GenerateToken(account);
@@ -98,6 +94,13 @@ namespace OnlineShop.UserAPI.Services
         /// <returns></returns>
         public async Task RegisterAsync(RegisterReqModel model)
         {
+            var existAccount = await _context.Accounts.FirstOrDefaultAsync(a => a.UserName.ToLower().Equals(model.UserName.ToLower()) || a.Email.ToLower().Equals(model.Email.ToLower()));
+
+            if (existAccount != null)
+            {
+                throw new CustomException(Errors.ACCOUNT_HAS_REGISTERED, Errors.ACCOUNT_HAS_REGISTERED_MSG);
+            }
+
             var account = _mapper.Map<RegisterReqModel, Account>(model);
 
             await _context.Accounts.AddAsync(account);

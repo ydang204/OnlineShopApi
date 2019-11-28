@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OnlineShop.Common.Extensions;
+using OnlineShop.Common.Middlewares;
 using OnlineShop.OrderAPI.Models;
 
 namespace OnlineShop.OrderAPI
@@ -51,6 +52,8 @@ namespace OnlineShop.OrderAPI
                 c.RoutePrefix = string.Empty;
                 c.DefaultModelsExpandDepth(-1);
             });
+
+            app.UseCustomExceptionHandler();
 
             app.UseMvc();
         }

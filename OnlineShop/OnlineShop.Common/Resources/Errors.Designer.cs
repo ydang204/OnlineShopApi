@@ -22,14 +22,14 @@ namespace OnlineShop.Common.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Error {
+    public class Errors {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Error() {
+        internal Errors() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace OnlineShop.Common.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OnlineShop.Common.Resources.Error", typeof(Error).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OnlineShop.Common.Resources.Errors", typeof(Errors).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,24 @@ namespace OnlineShop.Common.Resources {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 10001.
+        /// </summary>
+        public static string ACCOUNT_HAS_REGISTERED {
+            get {
+                return ResourceManager.GetString("ACCOUNT_HAS_REGISTERED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account has been registered.
+        /// </summary>
+        public static string ACCOUNT_HAS_REGISTERED_MSG {
+            get {
+                return ResourceManager.GetString("ACCOUNT_HAS_REGISTERED_MSG", resourceCulture);
             }
         }
         

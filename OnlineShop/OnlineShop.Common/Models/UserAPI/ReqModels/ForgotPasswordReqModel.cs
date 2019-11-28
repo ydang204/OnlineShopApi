@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace OnlineShop.Common.Models.UserAPI.ReqModels
+﻿namespace OnlineShop.Common.Models.UserAPI.ReqModels
 {
     public class ForgotPasswordReqModel
     {
+        public string Email { get; set; }
     }
 }
