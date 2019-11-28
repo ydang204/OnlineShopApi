@@ -9,12 +9,8 @@ namespace OnlineShop.OrderAPI.Models
         {
         }
 
-        #region Db Sets
-
         public DbSet<Order> Orders { get; set; }
 
         public DbSet<OrderDetails> OrderDetails { get; set; }
-
-        #endregion Db Sets
     }
 }

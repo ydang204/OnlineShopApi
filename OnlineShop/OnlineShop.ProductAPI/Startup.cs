@@ -4,8 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OnlineShop.Common.Extensions;
 using OnlineShop.ProductAPI.Models;
-using OnlineShop.ProductAPI.ServiceInterfaces;
-using OnlineShop.ProductAPI.Services;
 
 namespace OnlineShop.ProductAPI
 {
@@ -26,7 +24,7 @@ namespace OnlineShop.ProductAPI
                    .AddCustomOptions(Configuration)
                    .AddCustomJwtToken(Configuration)
                    .AddCustomAutoMapper()
-                   .AddCustomDbContext<UserContext>(Configuration);
+                   .AddCustomDbContext<ProductContext>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -20,11 +20,11 @@ namespace OnlineShop.OrderAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCustomMvc(Configuration)
-                    .AddSwagger(Configuration)
-                    .AddCustomOptions(Configuration)
-                    .AddCustomJwtToken(Configuration)
-                    .AddCustomAutoMapper()
-                    .AddCustomDbContext<OrderContext>(Configuration);
+                   .AddSwagger(Configuration)
+                   .AddCustomOptions(Configuration)
+                   .AddCustomJwtToken(Configuration)
+                   .AddCustomAutoMapper()
+                   .AddCustomDbContext<OrderContext>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
