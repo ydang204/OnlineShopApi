@@ -83,7 +83,8 @@ namespace OnlineShop.UserAPI.Services
 
             return new LoginResModel()
             {
-                Token = token
+                Token = token,
+                Account = _mapper.Map<Account, AccountResModel>(account)
             };
         }
 

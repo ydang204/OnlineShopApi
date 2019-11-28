@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineShop.Common.Models.UserAPI.ReqModels;
+using OnlineShop.Common.Models.UserAPI.ResModels;
 using OnlineShop.UserAPI.ServiceInterfaces;
 using System.Threading.Tasks;
 
@@ -24,11 +25,9 @@ namespace OnlineShop.UserAPI.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginReqModel model)
+        public async Task<LoginResModel> Login(LoginReqModel model)
         {
-            var response = await _authService.LoginAsync(model);
-
-            return Ok(response);
+            return await _authService.LoginAsync(model);
         }
 
         [HttpPost("forgot-password")]
