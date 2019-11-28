@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace OnlineShop.OrderAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class PingController : ControllerBase
     {
