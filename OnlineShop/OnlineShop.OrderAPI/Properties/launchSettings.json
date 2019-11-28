@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:9000",
+      "applicationUrl": "http://localhost:9003",
       "sslPort": 0
     }
   },
@@ -12,15 +12,14 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/ping",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "OnlineShop.ApiGateway": {
+    "OnlineShop.OrderAPI": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/ping",
+      "launchUrl": "api/values",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

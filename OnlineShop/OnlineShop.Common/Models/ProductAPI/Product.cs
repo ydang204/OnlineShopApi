@@ -1,6 +1,4 @@
-﻿using OnlineShop.Common.Models;
-
-namespace OnlineShop.ProductAPI.Models
+﻿namespace OnlineShop.Common.Models.ProductAPI
 {
     public class Product : BaseEntity<int>
     {

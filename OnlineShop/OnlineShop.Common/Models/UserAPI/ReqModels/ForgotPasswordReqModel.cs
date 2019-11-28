@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace OnlineShop.UserAPI.Models.ReqModels
+namespace OnlineShop.Common.Models.UserAPI.ReqModels
 {
     public class ForgotPasswordReqModel
     {

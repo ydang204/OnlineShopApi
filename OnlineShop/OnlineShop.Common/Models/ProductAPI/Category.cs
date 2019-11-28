@@ -1,7 +1,6 @@
-﻿using OnlineShop.Common.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace OnlineShop.ProductAPI.Models
+namespace OnlineShop.Common.Models.ProductAPI
 {
     public class Category : BaseEntity<int>
     {

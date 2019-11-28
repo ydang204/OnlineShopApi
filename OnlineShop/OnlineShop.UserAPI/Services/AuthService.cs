@@ -2,11 +2,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using OnlineShop.Common.Exceptions;
+using OnlineShop.Common.Models.UserAPI;
+using OnlineShop.Common.Models.UserAPI.ReqModels;
+using OnlineShop.Common.Models.UserAPI.ResModels;
 using OnlineShop.Common.Resources;
 using OnlineShop.Common.SettingOptions;
 using OnlineShop.UserAPI.Models;
-using OnlineShop.UserAPI.Models.ReqModels;
-using OnlineShop.UserAPI.Models.ResModels;
 using OnlineShop.UserAPI.ServiceInterfaces;
 using System;
 using System.Collections.Generic;

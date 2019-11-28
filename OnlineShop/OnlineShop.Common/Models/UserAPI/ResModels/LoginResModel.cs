@@ -1,4 +1,4 @@
-﻿namespace OnlineShop.UserAPI.Models.ResModels
+﻿namespace OnlineShop.Common.Models.UserAPI.ResModels
 {
     public class LoginResModel
     {

@@ -1,4 +1,4 @@
-﻿namespace OnlineShop.UserAPI.Models.ReqModels
+﻿namespace OnlineShop.Common.Models.UserAPI.ReqModels
 {
     public class LoginReqModel
     {

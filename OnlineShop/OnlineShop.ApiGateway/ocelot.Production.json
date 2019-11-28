@@ -2,47 +2,23 @@
   "ReRoutes": [
     {
       "DownstreamPathTemplate": "/api/{version}/{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44344
+          "Port": 9001
         }
       ],
-      "UpstreamPathTemplate": "/api/{version}/basket/{everything}",
+      "UpstreamPathTemplate": "/api/{version}/user/{everything}",
       "UpstreamHttpMethod": [ "Post", "Put", "Get", "Delete" ]
     },
     {
       "DownstreamPathTemplate": "/api/{version}/{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44385
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/identity/{everything}",
-      "UpstreamHttpMethod": [ "Post", "Put", "Get", "Delete" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/{everything}",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 44317
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/ordering/{everything}",
-      "UpstreamHttpMethod": [ "Post", "Put", "Get", "Delete" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/{everything}",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 44341
+          "Port": 9002
         }
       ],
       "UpstreamPathTemplate": "/api/{version}/product/{everything}",
@@ -50,14 +26,14 @@
     },
     {
       "DownstreamPathTemplate": "/api/{version}/{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44333
+          "Port": 9003
         }
       ],
-      "UpstreamPathTemplate": "/api/{version}/user/{everything}",
+      "UpstreamPathTemplate": "/api/{version}/order/{everything}",
       "UpstreamHttpMethod": [ "Post", "Put", "Get", "Delete" ]
     }
   ]

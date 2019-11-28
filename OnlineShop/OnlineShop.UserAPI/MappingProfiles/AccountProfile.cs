@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
+using OnlineShop.Common.Models.UserAPI;
+using OnlineShop.Common.Models.UserAPI.ReqModels;
 using OnlineShop.Common.Utitlities;
-using OnlineShop.UserAPI.Models;
-using OnlineShop.UserAPI.Models.ReqModels;
 
 namespace OnlineShop.UserAPI.MappingProfiles
 {

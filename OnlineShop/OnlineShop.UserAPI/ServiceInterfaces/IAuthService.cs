@@ -1,6 +1,7 @@
-﻿using OnlineShop.UserAPI.Models;
-using OnlineShop.UserAPI.Models.ReqModels;
-using OnlineShop.UserAPI.Models.ResModels;
+﻿using OnlineShop.Common.Models.UserAPI;
+using OnlineShop.Common.Models.UserAPI.ReqModels;
+using OnlineShop.Common.Models.UserAPI.ResModels;
+
 using System.Threading.Tasks;
 
 namespace OnlineShop.UserAPI.ServiceInterfaces

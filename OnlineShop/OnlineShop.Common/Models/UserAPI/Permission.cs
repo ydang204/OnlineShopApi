@@ -1,7 +1,6 @@
-﻿using OnlineShop.Common.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace OnlineShop.UserAPI.Models
+namespace OnlineShop.Common.Models.UserAPI
 {
     public class Permission : BaseEntity<int>
     {

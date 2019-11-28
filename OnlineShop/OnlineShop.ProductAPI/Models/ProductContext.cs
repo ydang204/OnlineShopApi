@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OnlineShop.Common.Models.ProductAPI;
 
 namespace OnlineShop.ProductAPI.Models
 {

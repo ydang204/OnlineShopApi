@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OnlineShop.UserAPI.Models.ReqModels;
+using OnlineShop.Common.Models.UserAPI.ReqModels;
 using OnlineShop.UserAPI.ServiceInterfaces;
 using System.Threading.Tasks;
 

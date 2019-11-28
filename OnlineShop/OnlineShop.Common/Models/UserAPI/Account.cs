@@ -1,10 +1,7 @@
-﻿using OnlineShop.Common.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace OnlineShop.UserAPI.Models
+namespace OnlineShop.Common.Models.UserAPI
 {
     public class Account : BaseEntity<Guid>
     {

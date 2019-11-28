@@ -3,11 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OnlineShop.Common.Extensions;
-using OnlineShop.ProductAPI.Models;
-using OnlineShop.ProductAPI.ServiceInterfaces;
-using OnlineShop.ProductAPI.Services;
+using OnlineShop.OrderAPI.Models;
 
-namespace OnlineShop.ProductAPI
+namespace OnlineShop.OrderAPI
 {
     public class Startup
     {
@@ -22,11 +20,11 @@ namespace OnlineShop.ProductAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCustomMvc(Configuration)
-                   .AddSwagger(Configuration)
-                   .AddCustomOptions(Configuration)
-                   .AddCustomJwtToken(Configuration)
-                   .AddCustomAutoMapper()
-                   .AddCustomDbContext<UserContext>(Configuration);
+                    .AddSwagger(Configuration)
+                    .AddCustomOptions(Configuration)
+                    .AddCustomJwtToken(Configuration)
+                    .AddCustomAutoMapper()
+                    .AddCustomDbContext<OrderContext>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

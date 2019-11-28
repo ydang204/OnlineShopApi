@@ -1,4 +1,4 @@
-﻿namespace OnlineShop.UserAPI.Models
+﻿namespace OnlineShop.Common.Models.UserAPI
 {
     public class RolePermission
     {
