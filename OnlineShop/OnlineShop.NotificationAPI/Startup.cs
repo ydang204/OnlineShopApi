@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using OnlineShop.Common.Extensions;
 using OnlineShop.Common.Middlewares;
 using OnlineShop.NotificationAPI.Models;
+using OnlineShop.NotificationAPI.ServiceInterfaces;
+using OnlineShop.NotificationAPI.Services;
 
 namespace OnlineShop.NotificationAPI
 {
@@ -27,7 +29,14 @@ namespace OnlineShop.NotificationAPI
                     .AddCustomJwtToken(Configuration)
                     .AddCustomAutoMapper()
                     .AddCustomDbContext<NotificationContext>(Configuration);
+
             services.AddHttpContextAccessor();
+
+            // Add services to DI
+            // TODO: Use Autofac
+            services.AddTransient<IMailService, MailService>();
+            services.AddScoped<IDeviceService, DeviceService>();
+            services.AddScoped<INotificationService, NotificationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
