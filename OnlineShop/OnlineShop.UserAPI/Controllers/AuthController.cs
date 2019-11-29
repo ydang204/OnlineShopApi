@@ -17,6 +17,11 @@ namespace OnlineShop.UserAPI.Controllers
             _authService = authService;
         }
 
+        /// <summary>
+        /// Allow user register new account
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterReqModel model)
         {

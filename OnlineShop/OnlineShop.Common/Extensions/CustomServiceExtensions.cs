@@ -6,12 +6,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using OnlineShop.Common.Constants;
 using OnlineShop.Common.SettingOptions;
-using Swashbuckle.AspNetCore.Swagger;
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
+using System.Reflection;
 using System.Text;
 
 namespace OnlineShop.Common.Extensions
@@ -61,25 +61,50 @@ namespace OnlineShop.Common.Extensions
         public static IServiceCollection AddSwagger(this IServiceCollection services, IConfiguration configuration)
 
         {
+            // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
-                string title = configuration.GetSection(SharedContant.SWAGGER_TITLE).Value;
-                c.SwaggerDoc("v1", new Info { Title = title, Version = "v1" });
-                c.DescribeAllEnumsAsStrings(); // display enum on swagger as string
-                c.AddSecurityDefinition("Bearer", new ApiKeyScheme
+                c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    In = "Header",
-                    Description = "Enter JWT preceeded by the word Bearer and a space, like 'Bearer XYZ...'",
-                    Name = "Authorization",
-                    Type = "apiKey"
+                    Version = "v1",
+                    Title = "Shoes Store API",
+                    Description = "A simple example ASP.NET Core Web API",
+                    TermsOfService = new Uri("https://example.com/terms"),
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Shayne Boyer",
+                        Email = string.Empty,
+                        Url = new Uri("https://twitter.com/spboyer"),
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "Use under LICX",
+                        Url = new Uri("https://example.com/license"),
+                    }
                 });
-                c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>
+
+                c.AddSecurityDefinition("bearerAuth", new OpenApiSecurityScheme
                 {
-                    { "Bearer", Enumerable.Empty<string>() }
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer",
+                    BearerFormat = "JWT",
+                    Description = "JWT Authorization header using the Bearer scheme."
                 });
-                //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                //c.IncludeXmlComments(xmlPath);
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "bearerAuth" }
+                        },
+                        new string[] {}
+                    }
+                });
+
+                // Set the comments path for the Swagger JSON and UI.
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             });
 
             return services;

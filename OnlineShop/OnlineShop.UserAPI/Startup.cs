@@ -29,6 +29,7 @@ namespace OnlineShop.UserAPI
                     .AddCustomJwtToken(Configuration)
                     .AddCustomAutoMapper()
                     .AddCustomDbContext<UserContext>(Configuration);
+            services.AddHttpContextAccessor();
 
             services.AddScoped<IAuthService, AuthService>();
         }

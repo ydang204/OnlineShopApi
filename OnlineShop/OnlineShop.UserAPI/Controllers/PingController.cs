@@ -21,6 +21,11 @@ namespace OnlineShop.UserAPI.Controllers
             _hostingEnvironment = hostingEnvironment;
         }
 
+
+        /// <summary>
+        /// Use this API to check the service is running or not
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public string Ping()
         {
