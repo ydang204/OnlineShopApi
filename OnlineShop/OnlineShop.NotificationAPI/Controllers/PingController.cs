@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace OnlineShop.UserAPI.Controllers
+namespace OnlineShop.NotificationAPI.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
@@ -28,7 +28,7 @@ namespace OnlineShop.UserAPI.Controllers
         [HttpGet]
         public string Ping()
         {
-            return $"User API is running on version {_hostingEnvironment.EnvironmentName}";
+            return $"Notification API is running on version {_hostingEnvironment.EnvironmentName}";
         }
     }
 }

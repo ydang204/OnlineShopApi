@@ -35,6 +35,18 @@
       ],
       "UpstreamPathTemplate": "/api/{version}/order/{everything}",
       "UpstreamHttpMethod": [ "Post", "Put", "Get", "Delete" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9004
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/notification/{everything}",
+      "UpstreamHttpMethod": [ "Post", "Put", "Get", "Delete" ]
     }
   ]
 }
