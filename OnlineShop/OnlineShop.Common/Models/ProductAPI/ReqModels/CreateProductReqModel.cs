@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 
 namespace OnlineShop.Common.Models.ProductAPI.ReqModels
 {
@@ -12,6 +13,6 @@ namespace OnlineShop.Common.Models.ProductAPI.ReqModels
 
         public int BrandId { get; set; }
 
-        public List<string> ProductImages { get; set; }
+        public List<IFormFile> ProductImages { get; set; }
     }
 }

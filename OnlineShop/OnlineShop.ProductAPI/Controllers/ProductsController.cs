@@ -22,7 +22,7 @@ namespace OnlineShop.ProductAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateProduct(CreateProductReqModel reqModel)
+        public async Task<IActionResult> CreateProduct([FromForm]CreateProductReqModel reqModel)
         {
             await _productService.CreateProductAsync(reqModel);
             return Ok(new { createProductSucceed = true });

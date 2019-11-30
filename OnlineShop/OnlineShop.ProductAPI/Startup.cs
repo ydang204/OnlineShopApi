@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OnlineShop.Common.Extensions;
 using OnlineShop.Common.Middlewares;
+using OnlineShop.Common.SettingOptions;
+using OnlineShop.Common.Utitlities;
 using OnlineShop.ProductAPI.Models;
 using OnlineShop.ProductAPI.ServiceInterfaces;
 using OnlineShop.ProductAPI.Services;
@@ -29,6 +31,12 @@ namespace OnlineShop.ProductAPI
                    .AddCustomJwtToken(Configuration)
                    .AddCustomAutoMapper()
                    .AddCustomDbContext<ProductContext>(Configuration);
+
+            // Add configuration options
+            services.Configure<CloudinaryOptions>(Configuration.GetSection("Cloudinary"));
+
+            // Add Helpers
+            services.AddScoped<CloudinaryHelper>();
 
             // Add services 
             services.AddScoped<IProductService, ProductService>();
