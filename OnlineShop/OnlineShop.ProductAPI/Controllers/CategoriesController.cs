@@ -30,7 +30,7 @@ namespace OnlineShop.ProductAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<BasePagingResponse<CategoryResModel>> GetBrands(GetBrandsReqModel model)
+        public async Task<BasePagingResponse<CategoryResModel>> GetBrands([FromQuery]GetBrandsReqModel model)
         {
             return await _categoryService.GetCategoriesAsync(model);
         }

@@ -6,7 +6,7 @@ namespace OnlineShop.Common.Models.ProductAPI
     {
         public string Name { get; set; }
 
-        public string Slug { get; set; }
+        public string SlugName { get; set; }
 
         public ICollection<Product> Products { get; set; }
     }

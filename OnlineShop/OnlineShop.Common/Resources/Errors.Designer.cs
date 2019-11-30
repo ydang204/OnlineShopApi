@@ -115,6 +115,24 @@ namespace OnlineShop.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 10006.
+        /// </summary>
+        public static string CATEGORY_ALREADY_EXIST {
+            get {
+                return ResourceManager.GetString("CATEGORY_ALREADY_EXIST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The category has already existed.
+        /// </summary>
+        public static string CATEGORY_ALREADY_EXIST_MSG {
+            get {
+                return ResourceManager.GetString("CATEGORY_ALREADY_EXIST_MSG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 10002.
         /// </summary>
         public static string DEVICE_ALREADY_EXIST {

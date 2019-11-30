@@ -8,7 +8,7 @@ namespace OnlineShop.ProductAPI.ServiceInterfaces
 {
     public interface ICategoryService
     {
-        Task CreateCategoryAsync(Category brand);
+        Task CreateCategoryAsync(Category category);
 
         Task<BasePagingResponse<CategoryResModel>> GetCategoriesAsync(GetBrandsReqModel model);
     }

@@ -11,7 +11,7 @@ namespace OnlineShop.ProductAPI.MappingProfiles
         public BrandMappingProfile()
         {
             CreateMap<CreateBrandReqModel, Brand>()
-                .ForMember(des => des.Slug, option => option.MapFrom(src => src.Name.GenerateSlug()));
+                .ForMember(des => des.SlugName, option => option.MapFrom(src => src.Name.GenerateSlug()));
 
             CreateMap<Brand, BrandResModel>();
         }
