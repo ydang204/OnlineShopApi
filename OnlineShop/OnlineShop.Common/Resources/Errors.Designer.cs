@@ -79,6 +79,42 @@ namespace OnlineShop.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 10002.
+        /// </summary>
+        public static string DEVICE_ALREADY_EXIST {
+            get {
+                return ResourceManager.GetString("DEVICE_ALREADY_EXIST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Device has already exsited.
+        /// </summary>
+        public static string DEVICE_ALREADY_EXIST_MSG {
+            get {
+                return ResourceManager.GetString("DEVICE_ALREADY_EXIST_MSG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 10003.
+        /// </summary>
+        public static string DEVICE_DOES_NOT_EXIST {
+            get {
+                return ResourceManager.GetString("DEVICE_DOES_NOT_EXIST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Device does not exist.
+        /// </summary>
+        public static string DEVICE_DOES_NOT_EXIST_MSG {
+            get {
+                return ResourceManager.GetString("DEVICE_DOES_NOT_EXIST_MSG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 10000.
         /// </summary>
         public static string USERNAME_PASSWORD_DO_NOT_CORRECT {

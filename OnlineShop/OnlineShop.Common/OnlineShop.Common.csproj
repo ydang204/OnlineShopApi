@@ -45,7 +45,6 @@
 
   <ItemGroup>
     <Folder Include="Models\Notification\ResModels\" />
-    <Folder Include="Models\Notification\ReqModels\" />
   </ItemGroup>
 
 </Project>

@@ -16,5 +16,7 @@ namespace OnlineShop.Common.Models.Notification
         public string DeviceUniqueIdentify { get; set; }
 
         public DevicePlatform Platform { get; set; }
+
+        public int AccountId { get; set; }
     }
 }
