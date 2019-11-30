@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OnlineShop.Common.Constants;
 
 namespace OnlineShop.NotificationAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route(SharedContants.API_V1_SPEC)]
     [ApiController]
     [Authorize]
     public class NotificationController : ControllerBase

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OnlineShop.Common.Constants;
 using OnlineShop.Common.Models.Notification;
 using OnlineShop.Common.Models.Notification.ReqModels;
 using OnlineShop.NotificationAPI.ServiceInterfaces;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace OnlineShop.NotificationAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route(SharedContants.API_V1_SPEC)]
     [ApiController]
     [Authorize]
     public class DevicesController : ControllerBase

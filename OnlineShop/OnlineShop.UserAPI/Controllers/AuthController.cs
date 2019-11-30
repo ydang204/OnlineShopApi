@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OnlineShop.Common.Constants;
 using OnlineShop.Common.Models.UserAPI.ReqModels;
 using OnlineShop.Common.Models.UserAPI.ResModels;
 using OnlineShop.UserAPI.ServiceInterfaces;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnlineShop.UserAPI.Controllers
 {
-    [Route("api/v1/[controller]")]
+    [Route(SharedContants.API_V1_SPEC)]
     [ApiController]
     public class AuthController : ControllerBase
     {

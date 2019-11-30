@@ -1,6 +1,6 @@
 ﻿namespace OnlineShop.Common.Constants
 {
-    public static class SharedContant
+    public static class SharedContants
     {
         public const string CORS_POLICY = "CorsPolicy";
 

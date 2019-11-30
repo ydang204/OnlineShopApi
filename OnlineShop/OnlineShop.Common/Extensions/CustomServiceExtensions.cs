@@ -30,7 +30,7 @@ namespace OnlineShop.Common.Extensions
 
             services.AddCors(options =>
             {
-                options.AddPolicy(SharedContant.CORS_POLICY,
+                options.AddPolicy(SharedContants.CORS_POLICY,
                     builder => builder.AllowAnyHeader().AllowAnyMethod().AllowCredentials());
             });
 
@@ -47,7 +47,7 @@ namespace OnlineShop.Common.Extensions
         {
             services.AddDbContext<T>(options =>
             {
-                options.UseSqlServer(configuration.GetConnectionString(SharedContant.DEFAULT_CONNECTION_STRING));
+                options.UseSqlServer(configuration.GetConnectionString(SharedContants.DEFAULT_CONNECTION_STRING));
             });
             return services;
         }
@@ -67,7 +67,7 @@ namespace OnlineShop.Common.Extensions
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = configuration.GetValue<string>(SharedContant.SWAGGER_TITLE),
+                    Title = configuration.GetValue<string>(SharedContants.SWAGGER_TITLE),
                     Description = "A simple example ASP.NET Core Web API",
                     TermsOfService = new Uri("https://example.com/terms"),
                     Contact = new OpenApiContact
