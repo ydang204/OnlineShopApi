@@ -2,7 +2,7 @@
 {
     public class Notification : BaseEntity<int>
     {
-        public int AccountId { get; set; }
+        public int? AccountId { get; set; }
 
         public string Data { get; set; }
 
