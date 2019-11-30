@@ -67,13 +67,13 @@ namespace OnlineShop.Common.Extensions
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Shoes Store API",
+                    Title = configuration.GetValue<string>(SharedContant.SWAGGER_TITLE),
                     Description = "A simple example ASP.NET Core Web API",
                     TermsOfService = new Uri("https://example.com/terms"),
                     Contact = new OpenApiContact
                     {
-                        Name = "Shayne Boyer",
-                        Email = string.Empty,
+                        Name = "Y Dang",
+                        Email = "daty.danghuynh20497@gmail.com",
                         Url = new Uri("https://twitter.com/spboyer"),
                     },
                     License = new OpenApiLicense
