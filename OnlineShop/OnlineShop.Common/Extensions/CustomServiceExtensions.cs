@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Converters;
 using OnlineShop.Common.Constants;
 using OnlineShop.Common.SettingOptions;
 using System;
@@ -26,7 +27,12 @@ namespace OnlineShop.Common.Extensions
         /// <returns></returns>
         public static IServiceCollection AddCustomMvc(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddJsonOptions(options =>
+                {
+                    // always serialize enum value as string
+                    options.SerializerSettings.Converters.Add(new StringEnumConverter());
+                });
 
             services.AddCors(options =>
             {

@@ -169,6 +169,24 @@ namespace OnlineShop.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 10007.
+        /// </summary>
+        public static string PRODUCT_ALREADY_EXIST {
+            get {
+                return ResourceManager.GetString("PRODUCT_ALREADY_EXIST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The product has already existed.
+        /// </summary>
+        public static string PRODUCT_ALREADY_EXIST_MSG {
+            get {
+                return ResourceManager.GetString("PRODUCT_ALREADY_EXIST_MSG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 10000.
         /// </summary>
         public static string USERNAME_PASSWORD_DO_NOT_CORRECT {

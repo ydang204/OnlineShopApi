@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OnlineShop.Common.Models.Common.ReqModels;
 using OnlineShop.Common.Models.Common.ResModels;
@@ -15,10 +16,13 @@ namespace OnlineShop.ProductAPI.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IProductService _productService;
+        private readonly IMapper _mapper;
 
-        public ProductsController(IProductService productService)
+        public ProductsController(IProductService productService,
+                                  IMapper mapper)
         {
             _productService = productService;
+            _mapper = mapper;
         }
 
         [HttpPost]
@@ -30,7 +34,7 @@ namespace OnlineShop.ProductAPI.Controllers
 
 
         [HttpGet]
-        public async Task<BasePagingResponse<ProductResModel>> GetProduct(BasePagingRequest model)
+        public async Task<BasePagingResponse<ProductResModel>> GetProduct([FromQuery]BasePagingRequest model)
         {
             return await _productService.GetProductsAsync(model);
         }

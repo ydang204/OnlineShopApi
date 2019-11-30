@@ -153,6 +153,12 @@
   <data name="DEVICE_DOES_NOT_EXIST_MSG" xml:space="preserve">
     <value>The device does not exist</value>
   </data>
+  <data name="PRODUCT_ALREADY_EXIST" xml:space="preserve">
+    <value>10007</value>
+  </data>
+  <data name="PRODUCT_ALREADY_EXIST_MSG" xml:space="preserve">
+    <value>The product has already existed</value>
+  </data>
   <data name="USERNAME_PASSWORD_DO_NOT_CORRECT" xml:space="preserve">
     <value>10000</value>
   </data>
