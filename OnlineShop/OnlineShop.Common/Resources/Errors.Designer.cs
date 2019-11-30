@@ -70,11 +70,47 @@ namespace OnlineShop.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Account has been registered.
+        ///   Looks up a localized string similar to The account has been registered.
         /// </summary>
         public static string ACCOUNT_HAS_REGISTERED_MSG {
             get {
                 return ResourceManager.GetString("ACCOUNT_HAS_REGISTERED_MSG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 10005.
+        /// </summary>
+        public static string BRAND_ALREADY_EXIST {
+            get {
+                return ResourceManager.GetString("BRAND_ALREADY_EXIST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The brand has already existed.
+        /// </summary>
+        public static string BRAND_ALREADY_EXIST_MSG {
+            get {
+                return ResourceManager.GetString("BRAND_ALREADY_EXIST_MSG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 10004.
+        /// </summary>
+        public static string BRAND_DOES_NOT_EXIST {
+            get {
+                return ResourceManager.GetString("BRAND_DOES_NOT_EXIST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The brand does not exist.
+        /// </summary>
+        public static string BRAND_DOES_NOT_EXIST_MSG {
+            get {
+                return ResourceManager.GetString("BRAND_DOES_NOT_EXIST_MSG", resourceCulture);
             }
         }
         
@@ -88,7 +124,7 @@ namespace OnlineShop.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Device has already exsited.
+        ///   Looks up a localized string similar to The device has already existed.
         /// </summary>
         public static string DEVICE_ALREADY_EXIST_MSG {
             get {
@@ -106,7 +142,7 @@ namespace OnlineShop.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Device does not exist.
+        ///   Looks up a localized string similar to The device does not exist.
         /// </summary>
         public static string DEVICE_DOES_NOT_EXIST_MSG {
             get {

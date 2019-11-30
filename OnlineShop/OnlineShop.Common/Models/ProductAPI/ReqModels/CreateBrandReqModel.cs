@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace OnlineShop.Common.Models.ProductAPI.ReqModels
+﻿namespace OnlineShop.Common.Models.ProductAPI.ReqModels
 {
     public class CreateBrandReqModel
     {
+        public string Name { get; set; }
     }
 }

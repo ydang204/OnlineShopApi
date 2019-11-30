@@ -121,19 +121,31 @@
     <value>10001</value>
   </data>
   <data name="ACCOUNT_HAS_REGISTERED_MSG" xml:space="preserve">
-    <value>Account has been registered</value>
+    <value>The account has been registered</value>
+  </data>
+  <data name="BRAND_ALREADY_EXIST" xml:space="preserve">
+    <value>10005</value>
+  </data>
+  <data name="BRAND_ALREADY_EXIST_MSG" xml:space="preserve">
+    <value>The brand has already existed</value>
+  </data>
+  <data name="BRAND_DOES_NOT_EXIST" xml:space="preserve">
+    <value>10004</value>
+  </data>
+  <data name="BRAND_DOES_NOT_EXIST_MSG" xml:space="preserve">
+    <value>The brand does not exist</value>
   </data>
   <data name="DEVICE_ALREADY_EXIST" xml:space="preserve">
     <value>10002</value>
   </data>
   <data name="DEVICE_ALREADY_EXIST_MSG" xml:space="preserve">
-    <value>Device has already exsited</value>
+    <value>The device has already existed</value>
   </data>
   <data name="DEVICE_DOES_NOT_EXIST" xml:space="preserve">
     <value>10003</value>
   </data>
   <data name="DEVICE_DOES_NOT_EXIST_MSG" xml:space="preserve">
-    <value>Device does not exist</value>
+    <value>The device does not exist</value>
   </data>
   <data name="USERNAME_PASSWORD_DO_NOT_CORRECT" xml:space="preserve">
     <value>10000</value>

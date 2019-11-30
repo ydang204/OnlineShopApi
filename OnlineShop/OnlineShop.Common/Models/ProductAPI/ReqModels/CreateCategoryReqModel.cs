@@ -2,5 +2,6 @@
 {
     public class CreateCategoryReqModel
     {
+        public string Name { get; set; }
     }
 }
