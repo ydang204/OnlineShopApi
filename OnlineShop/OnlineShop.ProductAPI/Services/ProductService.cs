@@ -63,10 +63,22 @@ namespace OnlineShop.ProductAPI.Services
             var query = _context.Products.Include(p => p.Category)
                                          .Include(p => p.Brand)
                                          .Include(p => p.ProductImages)
-                                         .Where(p => (!string.IsNullOrEmpty(model.Name) && p.Name.ToLower().Contains(model.Name.Trim().ToLower())) &&
-                                                    (model.CategoryId.HasValue && p.CategoryId == model.CategoryId.Value) &&
-                                                    (model.BrandId.HasValue && p.BrandId == model.BrandId.Value))
                                          .AsNoTracking();
+
+            if (!string.IsNullOrEmpty(model.Name))
+            {
+                query = query.Where(p => p.Name.ToLower().Contains(model.Name.Trim().ToLower()));
+            }
+
+            if (model.BrandId.HasValue)
+            {
+                query = query.Where(p => p.BrandId == model.BrandId);
+            }
+
+            if (model.CategoryId.HasValue)
+            {
+                query = query.Where(p => p.CategoryId == model.CategoryId);
+            }
 
             query = CommonFunctions.SortQuery(model, query);
 
@@ -88,14 +100,28 @@ namespace OnlineShop.ProductAPI.Services
 
         public async Task<List<SearchProductResModel>> SearchProductsAsync(SearchProductReqModel model)
         {
-            var products = await _context.Products
+            var query = _context.Products
                 .Include(p => p.Brand)
                 .Include(p => p.Category)
                 .Include(p => p.ProductImages)
-                .Where(p => (!string.IsNullOrEmpty(model.Name) && p.Name.ToLower().Contains(model.Name.ToLower())) &&
-                            (model.BrandId.HasValue && model.BrandId.Value == p.BrandId) &&
-                            (model.CategoryId.HasValue && model.CategoryId.Value == p.CategoryId))
-                .ToListAsync();
+                .AsNoTracking();
+
+            if (!string.IsNullOrEmpty(model.Name))
+            {
+                query = query.Where(p => p.Name.ToLower().Contains(model.Name.Trim().ToLower()));
+            }
+
+            if (model.BrandId.HasValue)
+            {
+                query = query.Where(p => p.BrandId == model.BrandId);
+            }
+
+            if (model.CategoryId.HasValue)
+            {
+                query = query.Where(p => p.CategoryId == model.CategoryId);
+            }
+
+            var products = await query.ToListAsync();
 
             return _mapper.Map<List<Product>, List<SearchProductResModel>>(products);
         }
