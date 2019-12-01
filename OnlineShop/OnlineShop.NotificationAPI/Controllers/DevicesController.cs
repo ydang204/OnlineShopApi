@@ -12,16 +12,16 @@ namespace OnlineShop.NotificationAPI.Controllers
 {
     [Route(SharedContants.API_V1_SPEC)]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class DevicesController : ControllerBase
     {
-        private readonly INotificationService _notificationService;
+        private readonly IDeviceService _deviceService;
         private readonly IMapper _mapper;
 
-        public DevicesController(INotificationService notificationService,
+        public DevicesController(IDeviceService deviceService,
                                  IMapper mapper)
         {
-            _notificationService = notificationService;
+            _deviceService = deviceService;
             _mapper = mapper;
         }
 
@@ -29,21 +29,21 @@ namespace OnlineShop.NotificationAPI.Controllers
         public async Task<IActionResult> AddDevice(AddDeviceReqModel model)
         {
             var device = _mapper.Map<AddDeviceReqModel, Device>(model);
-            await _notificationService.AddDeviceAsync(device);
+            await _deviceService.AddDeviceAsync(device);
             return Ok(new { addDeviceSucceed = true });
         }
 
         [HttpDelete("{deviceId}")]
         public async Task<IActionResult> DeleteDevice(Guid deviceId)
         {
-            await _notificationService.DeleteDeviceByIdAsync(deviceId);
+            await _deviceService.DeleteDeviceByIdAsync(deviceId);
             return Ok(new { deleteDeviceSucceed = true });
         }
 
         [HttpDelete("delete-by-unique-id/{uniqueId}")]
         public async Task<IActionResult> DeleteDeviceByUniqueId(string uniqueId)
         {
-            await _notificationService.DeleteDeviceByUniqueIdAsync(uniqueId);
+            await _deviceService.DeleteDeviceByUniqueIdAsync(uniqueId);
             return Ok(new { deleteDeviceSucceed = true });
         }
     }

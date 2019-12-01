@@ -4,14 +4,15 @@ using Microsoft.AspNetCore.Mvc;
 using OnlineShop.Common.Models.Common.ReqModels;
 using OnlineShop.Common.Models.Common.ResModels;
 using OnlineShop.Common.Models.ProductAPI.ReqModels;
+using OnlineShop.Common.Models.ProductAPI.ReqModels.Products;
 using OnlineShop.Common.Models.ProductAPI.ResModels;
 using OnlineShop.ProductAPI.ServiceInterfaces;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace OnlineShop.ProductAPI.Controllers
 {
     [Route("api/v1/[controller]")]
-    [Authorize]
     [ApiController]
     public class ProductsController : ControllerBase
     {
@@ -26,6 +27,7 @@ namespace OnlineShop.ProductAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateProduct([FromForm]CreateProductReqModel reqModel)
         {
             await _productService.CreateProductAsync(reqModel);
@@ -34,9 +36,15 @@ namespace OnlineShop.ProductAPI.Controllers
 
 
         [HttpGet]
-        public async Task<BasePagingResponse<ProductResModel>> GetProduct([FromQuery]BasePagingRequest model)
+        public async Task<BasePagingResponse<ProductResModel>> GetProduct([FromQuery]GetProductsReqModel model)
         {
             return await _productService.GetProductsAsync(model);
+        }
+
+        [HttpGet("search")]
+        public async Task<List<SearchProductResModel>> SearchProduct([FromQuery]SearchProductReqModel model)
+        {
+            return await _productService.SearchProductsAsync(model);
         }
     }
 }

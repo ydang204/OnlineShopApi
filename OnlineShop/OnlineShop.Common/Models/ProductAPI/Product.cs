@@ -22,6 +22,7 @@ namespace OnlineShop.Common.Models.ProductAPI
         public int BrandId { get; set; }
 
         public Brand Brand { get; set; }
+
         public ICollection<ProductImage> ProductImages { get; set; }
     }
 }

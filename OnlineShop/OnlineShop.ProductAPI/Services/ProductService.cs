@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
 using CloudinaryDotNet.Actions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using OnlineShop.Common.Exceptions;
-using OnlineShop.Common.Models.Common.ReqModels;
 using OnlineShop.Common.Models.Common.ResModels;
 using OnlineShop.Common.Models.ProductAPI;
 using OnlineShop.Common.Models.ProductAPI.ReqModels;
+using OnlineShop.Common.Models.ProductAPI.ReqModels.Products;
 using OnlineShop.Common.Models.ProductAPI.ResModels;
 using OnlineShop.Common.Resources;
 using OnlineShop.Common.Utitlities;
@@ -23,14 +24,17 @@ namespace OnlineShop.ProductAPI.Services
         private readonly ProductContext _context;
         private readonly CloudinaryHelper _cloudinaryHelper;
         private readonly IMapper _mapper;
+        private readonly ILogger<ProductService> _logger;
 
         public ProductService(ProductContext context,
                               IMapper mapper,
+                              ILogger<ProductService> logger,
                               CloudinaryHelper cloudinaryHelper)
         {
             _context = context;
             _cloudinaryHelper = cloudinaryHelper;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public async Task CreateProductAsync(CreateProductReqModel model)
@@ -52,13 +56,16 @@ namespace OnlineShop.ProductAPI.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<BasePagingResponse<ProductResModel>> GetProductsAsync(BasePagingRequest model)
+        public async Task<BasePagingResponse<ProductResModel>> GetProductsAsync(GetProductsReqModel model)
         {
             var result = new BasePagingResponse<ProductResModel>();
 
             var query = _context.Products.Include(p => p.Category)
                                          .Include(p => p.Brand)
                                          .Include(p => p.ProductImages)
+                                         .Where(p => (!string.IsNullOrEmpty(model.Name) && p.Name.ToLower().Contains(model.Name.Trim().ToLower())) &&
+                                                    (model.CategoryId.HasValue && p.CategoryId == model.CategoryId.Value) &&
+                                                    (model.BrandId.HasValue && p.BrandId == model.BrandId.Value))
                                          .AsNoTracking();
 
             query = CommonFunctions.SortQuery(model, query);
@@ -77,6 +84,20 @@ namespace OnlineShop.ProductAPI.Services
             result.TotalPage = (int)Math.Ceiling(result.Total / (double)result.PageSize);
 
             return result;
+        }
+
+        public async Task<List<SearchProductResModel>> SearchProductsAsync(SearchProductReqModel model)
+        {
+            var products = await _context.Products
+                .Include(p => p.Brand)
+                .Include(p => p.Category)
+                .Include(p => p.ProductImages)
+                .Where(p => (!string.IsNullOrEmpty(model.Name) && p.Name.ToLower().Contains(model.Name.ToLower())) &&
+                            (model.BrandId.HasValue && model.BrandId.Value == p.BrandId) &&
+                            (model.CategoryId.HasValue && model.CategoryId.Value == p.CategoryId))
+                .ToListAsync();
+
+            return _mapper.Map<List<Product>, List<SearchProductResModel>>(products);
         }
     }
 }

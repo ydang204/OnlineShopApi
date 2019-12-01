@@ -16,7 +16,6 @@ using OnlineShop.ProductAPI.ServiceInterfaces;
 namespace OnlineShop.ProductAPI.Controllers
 {
     [Route(SharedContants.API_V1_SPEC)]
-    [Authorize]
     [ApiController]
     public class CategoriesController : ControllerBase
     {
@@ -36,7 +35,8 @@ namespace OnlineShop.ProductAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateBrand(CreateCategoryReqModel model)
+        [Authorize]
+        public async Task<IActionResult> CreateCategory(CreateCategoryReqModel model)
         {
             var category = _mapper.Map<CreateCategoryReqModel, Category>(model);
             await _categoryService.CreateCategoryAsync(category);

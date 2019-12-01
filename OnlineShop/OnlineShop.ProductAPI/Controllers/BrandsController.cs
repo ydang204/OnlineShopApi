@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 namespace OnlineShop.ProductAPI.Controllers
 {
     [Route(SharedContants.API_V1_SPEC)]
-    [Authorize]
     [ApiController]
     public class BrandsController : ControllerBase
     {
@@ -32,6 +31,7 @@ namespace OnlineShop.ProductAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateBrand(CreateBrandReqModel model)
         {
             var brand = _mapper.Map<CreateBrandReqModel, Brand>(model);

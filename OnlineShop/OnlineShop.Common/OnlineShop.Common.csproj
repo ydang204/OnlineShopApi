@@ -46,6 +46,8 @@
 
   <ItemGroup>
     <Folder Include="Models\Notification\ResModels\" />
+    <Folder Include="Models\ProductAPI\ReqModels\Brands\" />
+    <Folder Include="Models\ProductAPI\ReqModels\Categories\" />
   </ItemGroup>
 
 </Project>

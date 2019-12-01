@@ -20,7 +20,7 @@ namespace OnlineShop.Common.Extensions
         public void UpdateTimeTracker()
         {
             var currentTime = DateTime.Now;
-            int? accountId = null; ;
+            int? accountId = null;
             if (_httpContext != null && _httpContext.HttpContext != null && _httpContext.HttpContext.User != null)
             {
                 accountId = _httpContext.HttpContext.User.GetAccountId();
