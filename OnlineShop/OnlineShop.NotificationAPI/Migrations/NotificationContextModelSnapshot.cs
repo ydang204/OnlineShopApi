@@ -34,7 +34,7 @@ namespace OnlineShop.NotificationAPI.Migrations
 
                     b.Property<DateTime>("ModifiedAt");
 
-                    b.Property<int>("ModifyAt");
+                    b.Property<int>("ModifiedBy");
 
                     b.Property<int>("ObjectStatus");
 
@@ -67,7 +67,7 @@ namespace OnlineShop.NotificationAPI.Migrations
 
                     b.Property<DateTime>("ModifiedAt");
 
-                    b.Property<int>("ModifyAt");
+                    b.Property<int>("ModifiedBy");
 
                     b.Property<int>("ObjectStatus");
 

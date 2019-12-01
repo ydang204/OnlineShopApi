@@ -40,7 +40,7 @@ namespace OnlineShop.Common.Extensions
 
                     if (entry.Metadata.FindProperty("CreatedBy") != null)
                     {
-                        if (entry.Property("CreatedBy").CurrentValue == null)
+                        if (entry.Property("CreatedBy").CurrentValue == null || (int)entry.Property("CreatedBy").CurrentValue == 0)
                             entry.Property("CreatedBy").CurrentValue = accountId;
                     }
                 }
@@ -51,7 +51,7 @@ namespace OnlineShop.Common.Extensions
                         entry.Property("ModifiedAt").CurrentValue = currentTime;
                 }
 
-                if (entry.Metadata.FindProperty("ModifiedBy") != null)
+                if (entry.Metadata.FindProperty("ModifiedBy") != null || (int)entry.Property("CreatedBy").CurrentValue == 0)
                 {
                     if (entry.Property("ModifiedBy").CurrentValue == null)
                         entry.Property("ModifiedBy").CurrentValue = accountId;

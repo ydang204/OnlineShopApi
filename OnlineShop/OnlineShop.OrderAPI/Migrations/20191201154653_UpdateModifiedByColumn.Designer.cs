@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using OnlineShop.UserAPI.Models;
+using OnlineShop.OrderAPI.Models;
 
-namespace OnlineShop.UserAPI.Migrations
+namespace OnlineShop.OrderAPI.Migrations
 {
-    [DbContext(typeof(UserContext))]
-    partial class UserContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(OrderContext))]
+    [Migration("20191201154653_UpdateModifiedByColumn")]
+    partial class UpdateModifiedByColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,53 +21,7 @@ namespace OnlineShop.UserAPI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("OnlineShop.Common.Models.UserAPI.Account", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Address");
-
-                    b.Property<DateTime>("CreatedAt");
-
-                    b.Property<int>("CreatedBy");
-
-                    b.Property<string>("Email");
-
-                    b.Property<string>("FullName");
-
-                    b.Property<DateTime>("ModifiedAt");
-
-                    b.Property<int>("ModifiedBy");
-
-                    b.Property<int>("ObjectStatus");
-
-                    b.Property<string>("PasswordHash");
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.Property<string>("UserName");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Accounts");
-                });
-
-            modelBuilder.Entity("OnlineShop.Common.Models.UserAPI.AccountRole", b =>
-                {
-                    b.Property<int>("AccountId");
-
-                    b.Property<int>("RoleId");
-
-                    b.HasKey("AccountId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AccountRoles");
-                });
-
-            modelBuilder.Entity("OnlineShop.Common.Models.UserAPI.Permission", b =>
+            modelBuilder.Entity("OnlineShop.Common.Models.OrderAPI.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -79,16 +35,18 @@ namespace OnlineShop.UserAPI.Migrations
 
                     b.Property<int>("ModifiedBy");
 
-                    b.Property<string>("Name");
-
                     b.Property<int>("ObjectStatus");
+
+                    b.Property<int>("ToTal");
+
+                    b.Property<int>("UserId");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Permission");
+                    b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("OnlineShop.Common.Models.UserAPI.Role", b =>
+            modelBuilder.Entity("OnlineShop.Common.Models.OrderAPI.OrderDetails", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -102,26 +60,19 @@ namespace OnlineShop.UserAPI.Migrations
 
                     b.Property<int>("ModifiedBy");
 
-                    b.Property<string>("Name");
-
                     b.Property<int>("ObjectStatus");
+
+                    b.Property<int?>("OrderId");
+
+                    b.Property<int>("ProductCount");
+
+                    b.Property<int>("ProductId");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles");
-                });
+                    b.HasIndex("OrderId");
 
-            modelBuilder.Entity("OnlineShop.Common.Models.UserAPI.RolePermission", b =>
-                {
-                    b.Property<int>("PermissionId");
-
-                    b.Property<int>("RoleId");
-
-                    b.HasKey("PermissionId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("RolePermission");
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("TrackerEnabledDbContext.Common.Models.AuditLog", b =>
@@ -191,30 +142,11 @@ namespace OnlineShop.UserAPI.Migrations
                     b.ToTable("LogMetadata");
                 });
 
-            modelBuilder.Entity("OnlineShop.Common.Models.UserAPI.AccountRole", b =>
+            modelBuilder.Entity("OnlineShop.Common.Models.OrderAPI.OrderDetails", b =>
                 {
-                    b.HasOne("OnlineShop.Common.Models.UserAPI.Account", "Account")
-                        .WithMany("AccountRoles")
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("OnlineShop.Common.Models.UserAPI.Role", "Role")
-                        .WithMany("AccountRoles")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("OnlineShop.Common.Models.UserAPI.RolePermission", b =>
-                {
-                    b.HasOne("OnlineShop.Common.Models.UserAPI.Permission", "Permission")
-                        .WithMany("RolePermissions")
-                        .HasForeignKey("PermissionId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("OnlineShop.Common.Models.UserAPI.Role", "Role")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("OnlineShop.Common.Models.OrderAPI.Order")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderId");
                 });
 
             modelBuilder.Entity("TrackerEnabledDbContext.Common.Models.AuditLogDetail", b =>

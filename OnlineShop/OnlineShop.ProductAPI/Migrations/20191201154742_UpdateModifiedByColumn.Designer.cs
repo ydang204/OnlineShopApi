@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using OnlineShop.UserAPI.Models;
+using OnlineShop.ProductAPI.Models;
 
-namespace OnlineShop.UserAPI.Migrations
+namespace OnlineShop.ProductAPI.Migrations
 {
-    [DbContext(typeof(UserContext))]
-    partial class UserContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ProductContext))]
+    [Migration("20191201154742_UpdateModifiedByColumn")]
+    partial class UpdateModifiedByColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,53 +21,7 @@ namespace OnlineShop.UserAPI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("OnlineShop.Common.Models.UserAPI.Account", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Address");
-
-                    b.Property<DateTime>("CreatedAt");
-
-                    b.Property<int>("CreatedBy");
-
-                    b.Property<string>("Email");
-
-                    b.Property<string>("FullName");
-
-                    b.Property<DateTime>("ModifiedAt");
-
-                    b.Property<int>("ModifiedBy");
-
-                    b.Property<int>("ObjectStatus");
-
-                    b.Property<string>("PasswordHash");
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.Property<string>("UserName");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Accounts");
-                });
-
-            modelBuilder.Entity("OnlineShop.Common.Models.UserAPI.AccountRole", b =>
-                {
-                    b.Property<int>("AccountId");
-
-                    b.Property<int>("RoleId");
-
-                    b.HasKey("AccountId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AccountRoles");
-                });
-
-            modelBuilder.Entity("OnlineShop.Common.Models.UserAPI.Permission", b =>
+            modelBuilder.Entity("OnlineShop.Common.Models.ProductAPI.Brand", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -83,12 +39,14 @@ namespace OnlineShop.UserAPI.Migrations
 
                     b.Property<int>("ObjectStatus");
 
+                    b.Property<string>("SlugName");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Permission");
+                    b.ToTable("Brands");
                 });
 
-            modelBuilder.Entity("OnlineShop.Common.Models.UserAPI.Role", b =>
+            modelBuilder.Entity("OnlineShop.Common.Models.ProductAPI.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -106,22 +64,79 @@ namespace OnlineShop.UserAPI.Migrations
 
                     b.Property<int>("ObjectStatus");
 
+                    b.Property<int?>("ParentId");
+
+                    b.Property<string>("SlugName");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Roles");
+                    b.HasIndex("ParentId");
+
+                    b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("OnlineShop.Common.Models.UserAPI.RolePermission", b =>
+            modelBuilder.Entity("OnlineShop.Common.Models.ProductAPI.Product", b =>
                 {
-                    b.Property<int>("PermissionId");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("RoleId");
+                    b.Property<int>("BrandId");
 
-                    b.HasKey("PermissionId", "RoleId");
+                    b.Property<int>("CategoryId");
 
-                    b.HasIndex("RoleId");
+                    b.Property<DateTime>("CreatedAt");
 
-                    b.ToTable("RolePermission");
+                    b.Property<int>("CreatedBy");
+
+                    b.Property<DateTime>("ModifiedAt");
+
+                    b.Property<int>("ModifiedBy");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("ObjectStatus");
+
+                    b.Property<decimal>("Price");
+
+                    b.Property<string>("SlugName");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BrandId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("OnlineShop.Common.Models.ProductAPI.ProductImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedAt");
+
+                    b.Property<int>("CreatedBy");
+
+                    b.Property<string>("ImageUrl");
+
+                    b.Property<DateTime>("ModifiedAt");
+
+                    b.Property<int>("ModifiedBy");
+
+                    b.Property<int>("ObjectStatus");
+
+                    b.Property<int>("ProductId");
+
+                    b.Property<string>("PublicId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductImages");
                 });
 
             modelBuilder.Entity("TrackerEnabledDbContext.Common.Models.AuditLog", b =>
@@ -191,29 +206,31 @@ namespace OnlineShop.UserAPI.Migrations
                     b.ToTable("LogMetadata");
                 });
 
-            modelBuilder.Entity("OnlineShop.Common.Models.UserAPI.AccountRole", b =>
+            modelBuilder.Entity("OnlineShop.Common.Models.ProductAPI.Category", b =>
                 {
-                    b.HasOne("OnlineShop.Common.Models.UserAPI.Account", "Account")
-                        .WithMany("AccountRoles")
-                        .HasForeignKey("AccountId")
+                    b.HasOne("OnlineShop.Common.Models.ProductAPI.Category", "Parent")
+                        .WithMany("Categories")
+                        .HasForeignKey("ParentId");
+                });
+
+            modelBuilder.Entity("OnlineShop.Common.Models.ProductAPI.Product", b =>
+                {
+                    b.HasOne("OnlineShop.Common.Models.ProductAPI.Brand", "Brand")
+                        .WithMany("Products")
+                        .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("OnlineShop.Common.Models.UserAPI.Role", "Role")
-                        .WithMany("AccountRoles")
-                        .HasForeignKey("RoleId")
+                    b.HasOne("OnlineShop.Common.Models.ProductAPI.Category", "Category")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("OnlineShop.Common.Models.UserAPI.RolePermission", b =>
+            modelBuilder.Entity("OnlineShop.Common.Models.ProductAPI.ProductImage", b =>
                 {
-                    b.HasOne("OnlineShop.Common.Models.UserAPI.Permission", "Permission")
-                        .WithMany("RolePermissions")
-                        .HasForeignKey("PermissionId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("OnlineShop.Common.Models.UserAPI.Role", "Role")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
+                    b.HasOne("OnlineShop.Common.Models.ProductAPI.Product", "Product")
+                        .WithMany("ProductImages")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

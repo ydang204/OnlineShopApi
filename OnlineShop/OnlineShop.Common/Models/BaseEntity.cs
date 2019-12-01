@@ -11,7 +11,7 @@ namespace OnlineShop.Common.Models
 
         public DateTime CreatedAt { get; set; }
 
-        public int ModifyAt { get; set; }
+        public int ModifiedBy { get; set; }
 
         public DateTime ModifiedAt { get; set; }
 
