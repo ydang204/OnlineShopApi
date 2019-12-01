@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace OnlineShop.Common.Models.UserAPI
 {
-    public class Account : BaseEntity<Guid>
+    public class Account : BaseEntity<int>
     {
         public string UserName { get; set; }
 

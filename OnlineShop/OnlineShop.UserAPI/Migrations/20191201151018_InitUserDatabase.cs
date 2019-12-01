@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OnlineShop.UserAPI.Migrations
 {
-    public partial class InitDatabase : Migration
+    public partial class InitUserDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,7 +12,8 @@ namespace OnlineShop.UserAPI.Migrations
                 name: "Accounts",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CreatedBy = table.Column<int>(nullable: false),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     ModifyAt = table.Column<int>(nullable: false),
@@ -28,6 +29,23 @@ namespace OnlineShop.UserAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Accounts", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AuditLogs",
+                columns: table => new
+                {
+                    AuditLogId = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    UserName = table.Column<string>(nullable: true),
+                    EventDateUTC = table.Column<DateTime>(nullable: false),
+                    EventType = table.Column<int>(nullable: false),
+                    TypeFullName = table.Column<string>(maxLength: 512, nullable: false),
+                    RecordId = table.Column<string>(maxLength: 256, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AuditLogs", x => x.AuditLogId);
                 });
 
             migrationBuilder.CreateTable(
@@ -67,22 +85,64 @@ namespace OnlineShop.UserAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AuditLogDetails",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    PropertyName = table.Column<string>(maxLength: 256, nullable: false),
+                    OriginalValue = table.Column<string>(nullable: true),
+                    NewValue = table.Column<string>(nullable: true),
+                    AuditLogId = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AuditLogDetails", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AuditLogDetails_AuditLogs_AuditLogId",
+                        column: x => x.AuditLogId,
+                        principalTable: "AuditLogs",
+                        principalColumn: "AuditLogId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "LogMetadata",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    AuditLogId = table.Column<long>(nullable: false),
+                    Key = table.Column<string>(nullable: true),
+                    Value = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LogMetadata", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_LogMetadata_AuditLogs_AuditLogId",
+                        column: x => x.AuditLogId,
+                        principalTable: "AuditLogs",
+                        principalColumn: "AuditLogId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AccountRoles",
                 columns: table => new
                 {
                     AccountId = table.Column<int>(nullable: false),
-                    RoleId = table.Column<int>(nullable: false),
-                    AccountId1 = table.Column<Guid>(nullable: true)
+                    RoleId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AccountRoles", x => new { x.AccountId, x.RoleId });
                     table.ForeignKey(
-                        name: "FK_AccountRoles_Accounts_AccountId1",
-                        column: x => x.AccountId1,
+                        name: "FK_AccountRoles_Accounts_AccountId",
+                        column: x => x.AccountId,
                         principalTable: "Accounts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_AccountRoles_Roles_RoleId",
                         column: x => x.RoleId,
@@ -116,14 +176,19 @@ namespace OnlineShop.UserAPI.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AccountRoles_AccountId1",
-                table: "AccountRoles",
-                column: "AccountId1");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_AccountRoles_RoleId",
                 table: "AccountRoles",
                 column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AuditLogDetails_AuditLogId",
+                table: "AuditLogDetails",
+                column: "AuditLogId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_LogMetadata_AuditLogId",
+                table: "LogMetadata",
+                column: "AuditLogId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RolePermission_RoleId",
@@ -137,10 +202,19 @@ namespace OnlineShop.UserAPI.Migrations
                 name: "AccountRoles");
 
             migrationBuilder.DropTable(
+                name: "AuditLogDetails");
+
+            migrationBuilder.DropTable(
+                name: "LogMetadata");
+
+            migrationBuilder.DropTable(
                 name: "RolePermission");
 
             migrationBuilder.DropTable(
                 name: "Accounts");
+
+            migrationBuilder.DropTable(
+                name: "AuditLogs");
 
             migrationBuilder.DropTable(
                 name: "Permission");
