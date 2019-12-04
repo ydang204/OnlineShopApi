@@ -10,9 +10,9 @@ namespace OnlineShop.Common.Models.ProductAPI.ResModels
 
         public string SlugName { get; set; }
 
-        public CategoryResModel Category { get; set; }
+        public string CategoryName { get; set; }
 
-        public BrandResModel Brand { get; set; }
+        public string BrandName { get; set; }
 
         public ICollection<ProductImageResModel> ProductImages { get; set; }
     }

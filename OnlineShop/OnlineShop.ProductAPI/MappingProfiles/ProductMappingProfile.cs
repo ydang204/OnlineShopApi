@@ -15,7 +15,13 @@ namespace OnlineShop.ProductAPI.MappingProfiles
                 .ForMember(des => des.SlugName, option => option.MapFrom(src => src.Name.GenerateSlug()))
                 .ForMember(des => des.ProductImages, option => option.Ignore());
 
-            CreateMap<Product, ProductResModel>();
+            CreateMap<Product, ProductDetailsResModel>()
+                 .ForMember(des => des.CategoryName, option => option.MapFrom(src => src.Category.Name))
+                .ForMember(des => des.BrandName, option => option.MapFrom(src => src.Brand.Name));
+
+            CreateMap<Product, ProductResModel>()
+                .ForMember(des => des.CategoryName, option => option.MapFrom(src => src.Category.Name))
+                .ForMember(des => des.BrandName, option => option.MapFrom(src => src.Brand.Name));
 
             CreateMap<Product, SearchProductResModel>()
                 .ForMember(des => des.ImageUrl, option => option.MapFrom(src => src.ProductImages.First().ImageUrl))

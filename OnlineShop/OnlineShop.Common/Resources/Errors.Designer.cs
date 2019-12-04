@@ -187,6 +187,24 @@ namespace OnlineShop.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 10008.
+        /// </summary>
+        public static string PRODUCT_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("PRODUCT_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The product does not exist.
+        /// </summary>
+        public static string PRODUCT_NOT_FOUND_MSG {
+            get {
+                return ResourceManager.GetString("PRODUCT_NOT_FOUND_MSG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 10000.
         /// </summary>
         public static string USERNAME_PASSWORD_DO_NOT_CORRECT {

@@ -40,7 +40,9 @@ namespace OnlineShop.ProductAPI.Services
         public async Task CreateProductAsync(CreateProductReqModel model)
         {
             var existProduct = await _context.Products
-                                             .FirstOrDefaultAsync(p => p.Name.ToLower().Equals(model.Name.ToLower()));
+                                             .FirstOrDefaultAsync(p => p.Name.ToLower().Equals(model.Name.ToLower()) ||
+                                                p.Name.GenerateSlug().Equals(model.Name.GenerateSlug())
+                                             );
 
             if (existProduct != null)
             {
@@ -56,6 +58,38 @@ namespace OnlineShop.ProductAPI.Services
             await _context.SaveChangesAsync();
         }
 
+        public async Task<ProductDetailsResModel> GetProductDetailsAsync(int id)
+        {
+            var product = await _context.Products
+                                        .Include(p => p.Brand)
+                                        .Include(p => p.Category)
+                                        .Include(p => p.ProductImages)
+                                        .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (product == null)
+            {
+                throw new CustomException(Errors.PRODUCT_NOT_FOUND, Errors.PRODUCT_NOT_FOUND_MSG);
+            }
+
+            return _mapper.Map<Product, ProductDetailsResModel>(product);
+        }
+
+        public async Task<ProductDetailsResModel> GetProductDetailsAsync(string slug)
+        {
+            var product = await _context.Products
+                            .Include(p => p.Brand)
+                            .Include(p => p.Category)
+                            .Include(p => p.ProductImages)
+                            .FirstOrDefaultAsync(p => p.SlugName == slug);
+
+            if (product == null)
+            {
+                throw new CustomException(Errors.PRODUCT_NOT_FOUND, Errors.PRODUCT_NOT_FOUND_MSG);
+            }
+
+            return _mapper.Map<Product, ProductDetailsResModel>(product);
+        }
+
         public async Task<BasePagingResponse<ProductResModel>> GetProductsAsync(GetProductsReqModel model)
         {
             var result = new BasePagingResponse<ProductResModel>();
@@ -64,11 +98,6 @@ namespace OnlineShop.ProductAPI.Services
                                          .Include(p => p.Brand)
                                          .Include(p => p.ProductImages)
                                          .AsNoTracking();
-
-            if (!string.IsNullOrEmpty(model.Name))
-            {
-                query = query.Where(p => p.Name.ToLower().Contains(model.Name.Trim().ToLower()));
-            }
 
             if (model.BrandId.HasValue)
             {

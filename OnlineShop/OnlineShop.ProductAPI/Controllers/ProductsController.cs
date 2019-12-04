@@ -26,12 +26,28 @@ namespace OnlineShop.ProductAPI.Controllers
             _mapper = mapper;
         }
 
+
+
+
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> CreateProduct([FromForm]CreateProductReqModel reqModel)
         {
             await _productService.CreateProductAsync(reqModel);
             return Ok(new { createProductSucceed = true });
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ProductDetailsResModel> ProductDetails(int id)
+        {
+            return await _productService.GetProductDetailsAsync(id);
+        }
+
+
+        [HttpGet("slug/{slug}")]
+        public async Task<ProductDetailsResModel> ProductDetails(string slug)
+        {
+            return await _productService.GetProductDetailsAsync(slug);
         }
 
 

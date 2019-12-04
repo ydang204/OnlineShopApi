@@ -159,6 +159,12 @@
   <data name="PRODUCT_ALREADY_EXIST_MSG" xml:space="preserve">
     <value>The product has already existed</value>
   </data>
+  <data name="PRODUCT_NOT_FOUND" xml:space="preserve">
+    <value>10008</value>
+  </data>
+  <data name="PRODUCT_NOT_FOUND_MSG" xml:space="preserve">
+    <value>The product does not exist</value>
+  </data>
   <data name="USERNAME_PASSWORD_DO_NOT_CORRECT" xml:space="preserve">
     <value>10000</value>
   </data>

@@ -13,5 +13,7 @@ namespace OnlineShop.ProductAPI.ServiceInterfaces
         Task CreateProductAsync(CreateProductReqModel model);
         Task<BasePagingResponse<ProductResModel>> GetProductsAsync(GetProductsReqModel model);
         Task<List<SearchProductResModel>> SearchProductsAsync(SearchProductReqModel model);
+        Task<ProductDetailsResModel> GetProductDetailsAsync(int id);
+        Task<ProductDetailsResModel> GetProductDetailsAsync(string slug);
     }
 }
