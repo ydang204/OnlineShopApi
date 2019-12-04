@@ -64,7 +64,7 @@ namespace OnlineShop.ProductAPI.Services
             foreach (var category in result.Items)
             {
                 var childCategories = categories.Where(c => c.ParentId == category.Id).ToList();
-                category.ChildCategories = _mapper.Map<List<Category>, List<CategoryResModel>>(childCategories);
+                category.ChildCategories = _mapper.Map<List<Category>, List<ChildCategoryResModel>>(childCategories);
             }
 
             result.Page = model.Page;

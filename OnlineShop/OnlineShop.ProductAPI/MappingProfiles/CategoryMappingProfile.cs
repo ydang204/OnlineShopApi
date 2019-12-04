@@ -13,6 +13,7 @@ namespace OnlineShop.ProductAPI.MappingProfiles
             CreateMap<CreateCategoryReqModel, Category>().ForMember(des => des.SlugName, option => option.MapFrom(src => src.Name.GenerateSlug()));
 
             CreateMap<Category, CategoryResModel>();
+            CreateMap<Category, ChildCategoryResModel>();
         }
     }
 }

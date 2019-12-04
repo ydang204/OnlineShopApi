@@ -10,6 +10,6 @@ namespace OnlineShop.Common.Models.ProductAPI.ResModels
 
         public string SlugName { get; set; }
 
-        public List<CategoryResModel> ChildCategories { get; set; }
+        public List<ChildCategoryResModel> ChildCategories { get; set; }
     }
 }
