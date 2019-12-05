@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using OnlineShop.Common.SettingOptions;
 using OnlineShop.NotificationAPI.ServiceInterfaces;
 using System;
@@ -11,10 +12,12 @@ namespace OnlineShop.NotificationAPI.Services
     public class MailService : IMailService
     {
         private readonly SmtpMailOptions _emailSettings;
+        private readonly ILogger<MailService> _logger;
 
-        public MailService(IOptions<SmtpMailOptions> emailSettings)
+        public MailService(IOptions<SmtpMailOptions> emailSettings, ILogger<MailService> logger)
         {
             _emailSettings = emailSettings.Value;
+            _logger = logger;
         }
 
         public async Task SendEmailAsync(string email, string subject, string message)
@@ -46,7 +49,7 @@ namespace OnlineShop.NotificationAPI.Services
             }
             catch (Exception ex)
             {
-                //do something here
+                _logger.LogError(ex, $"Can not send email to {email}");
             }
         }
     }
