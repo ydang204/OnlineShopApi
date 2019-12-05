@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace OnlineShop.NotificationAPI.ServiceInterfaces
 {
-    public class IMailService
+    public interface IMailService
     {
+      Task SendEmailAsync(string email, string subject, string message);
     }
 }

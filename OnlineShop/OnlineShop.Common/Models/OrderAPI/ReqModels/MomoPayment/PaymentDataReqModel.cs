@@ -1,34 +1,37 @@
 ﻿using OnlineShop.Common.Utitlities;
-using ;
+using Newtonsoft.Json.Linq;
 
 namespace OnlineShop.Common.Models.OrderAPI.ReqModels.MomoPayment
 {
     public class PaymentDataReqModel
     {
         
-        public string? AccessKey { get; set; }
+        public string AccessKey { get; set; }
         
-        public string? PartnerCode { get; set; }
+        public string PartnerCode { get; set; }
         
-        public string? RequestType { get; set; }
+        public string RequestType { get; set; }
         
-        public string? NotifyUrl { get; set; }
+        public string NotifyUrl { get; set; }
         
-        public string? ReturnUrl { get; set; }
+        public string ReturnUrl { get; set; }
         
-        public string? OrderId { get; set; }
+        public string OrderId { get; set; }
         
-        public string? Amount { get; set; }
+        public string Amount { get; set; }
 
-        public string? OrderInfo { get; set; }
+        public string OrderInfo { get; set; }
 
-        public string? RequestId { get; set; }
+        public string RequestId { get; set; }
 
-        public string? ExtraData { get; set; }
+        public string ExtraData { get; set; }
 
-        public string? Signature 
+        public string Signature 
         { 
-            get; 
+            get
+            {
+                return this.Signature;
+            }           
             set
             {
                 string rawHash = "partnerCode="+ 
@@ -39,7 +42,7 @@ namespace OnlineShop.Common.Models.OrderAPI.ReqModels.MomoPayment
                 this.OrderId + "&orderInfo="+ 
                 this.OrderInfo + "&returnUrl="+ 
                 this.ReturnUrl + "&notifyUrl=" + 
-                this.Notifyurl + "&extraData="+
+                this.NotifyUrl + "&extraData="+
                 this.ExtraData;
 
                 MoMoSecurity crypto = new MoMoSecurity();
