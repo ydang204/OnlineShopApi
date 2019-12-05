@@ -19,11 +19,6 @@ namespace OnlineShop.NotificationAPI.Services
 
         public async Task SendEmailAsync(string email, string subject, string message)
         {
-            await ExecuteAsync(email, subject, message);
-        }
-
-        public async Task ExecuteAsync(string email, string subject, string message)
-        {
             try
             {
                 string toEmail = string.IsNullOrEmpty(email)
