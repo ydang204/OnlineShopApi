@@ -5,6 +5,8 @@ namespace OnlineShop.Common.Models.OrderAPI.ReqModels.MomoPayment
 {
     public class PaymentDataReqModel
     {
+        private MoMoSecurity crypto = new MoMoSecurity();
+
         public string AccessKey { get; set; }
 
         public string PartnerCode { get; set; }
@@ -25,9 +27,11 @@ namespace OnlineShop.Common.Models.OrderAPI.ReqModels.MomoPayment
 
         public string ExtraData { get; set; }
 
+        private string SignatureScripted { get; set; }
+
         public string Signature
         {
-            get => this.Signature;
+            get => this.SignatureScripted;
             set
             {
                 string rawHash = "partnerCode=" +
@@ -41,10 +45,8 @@ namespace OnlineShop.Common.Models.OrderAPI.ReqModels.MomoPayment
                 this.NotifyUrl + "&extraData=" +
                 this.ExtraData;
 
-                MoMoSecurity crypto = new MoMoSecurity();
-
                 //sign signature SHA256
-                this.Signature = crypto.signSHA256(rawHash, Constants.SharedContants.SERECT_KEY);
+                this.SignatureScripted = this.crypto.signSHA256(rawHash, Constants.SharedContants.SERECT_KEY);
             }
         }
 
@@ -62,7 +64,7 @@ namespace OnlineShop.Common.Models.OrderAPI.ReqModels.MomoPayment
                 { "notifyUrl", this.NotifyUrl },
                 { "extraData", this.ExtraData },
                 { "requestType", this.RequestType },
-                { "signature", this.Signature }
+                { "signature", this.SignatureScripted }
             };
         }
     }

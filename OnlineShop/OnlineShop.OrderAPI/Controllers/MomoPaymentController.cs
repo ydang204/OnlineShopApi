@@ -19,9 +19,9 @@ namespace OnlineShop.OrderAPI.Controllers
         {
         }
 
-        [HttpGet]
-        [Authorize]
-        public string CallPayment([FromForm]PaymentDataReqModel reqModel)
+        [HttpPost]
+        //[Authorize]
+        public string CallPayment([FromBody]PaymentDataReqModel reqModel)
         {
             return sendPaymentRequest(SharedContants.MOMO_ENDPOINT, reqModel.getDataJsonObject().ToString());
         }
