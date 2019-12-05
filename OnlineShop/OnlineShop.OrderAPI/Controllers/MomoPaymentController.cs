@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Security.Cryptography;
-using System.IO;
-using System.Text;
-using System.Net;
 using OnlineShop.Common.Constants;
 using OnlineShop.Common.Models.OrderAPI.ReqModels.MomoPayment;
+using OnlineShop.Common.Models.OrderAPI.ResModels;
+using System.IO;
+using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace OnlineShop.OrderAPI.Controllers
@@ -18,7 +17,6 @@ namespace OnlineShop.OrderAPI.Controllers
     {
         public MomoPaymentController()
         {
-
         }
 
         [HttpGet]
@@ -26,11 +24,10 @@ namespace OnlineShop.OrderAPI.Controllers
         public string CallPayment([FromForm]PaymentDataReqModel reqModel)
         {
             return sendPaymentRequest(SharedContants.MOMO_ENDPOINT, reqModel.getDataJsonObject().ToString());
-             
         }
+
         private string sendPaymentRequest(string endpoint, string postJsonString)
         {
-
             try
             {
                 HttpWebRequest httpWReq = (HttpWebRequest)WebRequest.Create(endpoint);
@@ -56,7 +53,6 @@ namespace OnlineShop.OrderAPI.Controllers
 
                 using (var reader = new StreamReader(response.GetResponseStream()))
                 {
-
                     string temp = null;
                     while ((temp = reader.ReadLine()) != null)
                     {
@@ -64,16 +60,20 @@ namespace OnlineShop.OrderAPI.Controllers
                     }
                 }
 
-
                 //todo parse it
                 return jsonresponse;
                 //return new MomoResponse(mtid, jsonresponse);
-
             }
             catch (WebException e)
             {
                 return e.Message;
             }
+        }
+
+        [HttpPost("ipn")]
+        public async Task<IActionResult> MomoPaymentNotification([FromForm]MomoIpnResModel model)
+        {
+            return Ok(model);
         }
     }
 }

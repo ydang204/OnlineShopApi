@@ -1,23 +1,22 @@
-﻿using OnlineShop.Common.Utitlities;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
+using OnlineShop.Common.Utitlities;
 
 namespace OnlineShop.Common.Models.OrderAPI.ReqModels.MomoPayment
 {
     public class PaymentDataReqModel
     {
-        
         public string AccessKey { get; set; }
-        
+
         public string PartnerCode { get; set; }
-        
+
         public string RequestType { get; set; }
-        
+
         public string NotifyUrl { get; set; }
-        
+
         public string ReturnUrl { get; set; }
-        
+
         public string OrderId { get; set; }
-        
+
         public string Amount { get; set; }
 
         public string OrderInfo { get; set; }
@@ -26,23 +25,20 @@ namespace OnlineShop.Common.Models.OrderAPI.ReqModels.MomoPayment
 
         public string ExtraData { get; set; }
 
-        public string Signature 
-        { 
-            get
-            {
-                return this.Signature;
-            }           
+        public string Signature
+        {
+            get => this.Signature;
             set
             {
-                string rawHash = "partnerCode="+ 
-                this.PartnerCode + "&accessKey="+
-                this.AccessKey+ "&requestId=" +
-                this.RequestId+ "&amount=" + 
-                this.Amount + "&orderId="+
-                this.OrderId + "&orderInfo="+ 
-                this.OrderInfo + "&returnUrl="+ 
-                this.ReturnUrl + "&notifyUrl=" + 
-                this.NotifyUrl + "&extraData="+
+                string rawHash = "partnerCode=" +
+                this.PartnerCode + "&accessKey=" +
+                this.AccessKey + "&requestId=" +
+                this.RequestId + "&amount=" +
+                this.Amount + "&orderId=" +
+                this.OrderId + "&orderInfo=" +
+                this.OrderInfo + "&returnUrl=" +
+                this.ReturnUrl + "&notifyUrl=" +
+                this.NotifyUrl + "&extraData=" +
                 this.ExtraData;
 
                 MoMoSecurity crypto = new MoMoSecurity();
@@ -54,7 +50,7 @@ namespace OnlineShop.Common.Models.OrderAPI.ReqModels.MomoPayment
 
         public JObject getDataJsonObject()
         {
-           return new JObject
+            return new JObject
             {
                 { "partnerCode", this.PartnerCode },
                 { "accessKey", this.AccessKey },
@@ -67,7 +63,6 @@ namespace OnlineShop.Common.Models.OrderAPI.ReqModels.MomoPayment
                 { "extraData", this.ExtraData },
                 { "requestType", this.RequestType },
                 { "signature", this.Signature }
-
             };
         }
     }
