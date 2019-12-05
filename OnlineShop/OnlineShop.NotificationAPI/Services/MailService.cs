@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using OnlineShop.Common.SettingOptions;
 using OnlineShop.NotificationAPI.ServiceInterfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
@@ -12,21 +12,16 @@ namespace OnlineShop.NotificationAPI.Services
 {
     public class MailService : IMailService
     {
-        public MailService(IOptions<SmtpMailOptions> emailSettings)
+        private readonly SmtpMailOptions _emailSettings;
+        private readonly ILogger<MailService> _logger;
+
+        public MailService(IOptions<SmtpMailOptions> emailSettings, ILogger<MailService> logger)
         {
             _emailSettings = emailSettings.Value;
+            _logger = logger;
         }
 
-        public SmtpMailOptions _emailSettings { get; }
-
-        public Task SendEmailAsync(string email, string subject, string message)
-        {
-
-            Execute(email, subject, message).Wait();
-            return Task.FromResult(0);
-        }
-
-        public async Task Execute(string email, string subject, string message)
+        public async Task SendEmailAsync(string email, string subject, string message)
         {
             try
             {
@@ -59,9 +54,8 @@ namespace OnlineShop.NotificationAPI.Services
             }
             catch (Exception ex)
             {
-                //do something here
-                Console.WriteLine("loi nguyen con");
-                Console.ReadLine(); 
+
+                _logger.LogError(ex, $"Can not send email to {email}");
             }
         }
     }
