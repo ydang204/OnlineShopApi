@@ -7,7 +7,7 @@ using System.Text;
 using System.Net;
 using OnlineShop.Common.Constants;
 using OnlineShop.Common.Models.OrderAPI.ReqModels.MomoPayment;
-using System.Threading.Tasks;
+using System.Threading.Tasks;   
 
 namespace OnlineShop.OrderAPI.Controllers
 {
@@ -21,9 +21,9 @@ namespace OnlineShop.OrderAPI.Controllers
 
         }
 
-        [HttpGet]
-        [Authorize]
-        public string CallPayment([FromForm]PaymentDataReqModel reqModel)
+        [HttpPost]
+        //[Authorize]
+        public string CallPayment([FromBody]PaymentDataReqModel reqModel)
         {
             return sendPaymentRequest(SharedContants.MOMO_ENDPOINT, reqModel.getDataJsonObject().ToString());
              
@@ -64,6 +64,8 @@ namespace OnlineShop.OrderAPI.Controllers
                     }
                 }
 
+                Console.WriteLine(jsonresponse);
+                Console.ReadLine();
 
                 //todo parse it
                 return jsonresponse;
