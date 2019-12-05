@@ -11,5 +11,9 @@
         public const string SWAGGER_TITLE = "Swagger:Title";
 
         public const string DEFAULT_CONNECTION_STRING = "DefaultConnection";
+
+        public const string SERECT_KEY = "86oBBGjFs5IPm3FwPZx4yA0OYeSTPHFY";
+
+        public const string MOMO_ENDPOINT = "https://test-payment.momo.vn/gw_payment/transactionProcessor";
     }
 }
