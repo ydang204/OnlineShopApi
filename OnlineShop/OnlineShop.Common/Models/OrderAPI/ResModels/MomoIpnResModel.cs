@@ -18,7 +18,7 @@ namespace OnlineShop.Common.Models.OrderAPI.ResModels
 
         public string ResponseTime { get; set; }
 
-        public JObject ExtraData { get; set; }
+        public string ExtraData { get; set; }
 
         public string Signature { get; set; }
     }

@@ -2,11 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using OnlineShop.Common.Constants;
 using OnlineShop.Common.Models.OrderAPI.ReqModels.MomoPayment;
+using System.Threading.Tasks;   
 using OnlineShop.Common.Models.OrderAPI.ResModels;
 using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+>>>>>>> e5732521051317c1619bf7ecacb16b5b2cb3c05a
 
 namespace OnlineShop.OrderAPI.Controllers
 {
@@ -19,9 +21,9 @@ namespace OnlineShop.OrderAPI.Controllers
         {
         }
 
-        [HttpGet]
-        [Authorize]
-        public string CallPayment([FromForm]PaymentDataReqModel reqModel)
+        [HttpPost]
+        //[Authorize]
+        public string CallPayment([FromBody]PaymentDataReqModel reqModel)
         {
             return sendPaymentRequest(SharedContants.MOMO_ENDPOINT, reqModel.getDataJsonObject().ToString());
         }
@@ -59,7 +61,8 @@ namespace OnlineShop.OrderAPI.Controllers
                         jsonresponse += temp;
                     }
                 }
-
+                Console.WriteLine(jsonresponse);
+                Console.ReadLine();
                 //todo parse it
                 return jsonresponse;
                 //return new MomoResponse(mtid, jsonresponse);

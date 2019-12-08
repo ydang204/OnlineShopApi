@@ -5,6 +5,8 @@ namespace OnlineShop.Common.Models.OrderAPI.ReqModels.MomoPayment
 {
     public class PaymentDataReqModel
     {
+        private MoMoSecurity crypto = new MoMoSecurity();
+
         public string AccessKey { get; set; }
 
         public string PartnerCode { get; set; }
@@ -25,31 +27,22 @@ namespace OnlineShop.Common.Models.OrderAPI.ReqModels.MomoPayment
 
         public string ExtraData { get; set; }
 
-        public string Signature
-        {
-            get => this.Signature;
-            set
-            {
-                string rawHash = "partnerCode=" +
-                this.PartnerCode + "&accessKey=" +
-                this.AccessKey + "&requestId=" +
-                this.RequestId + "&amount=" +
-                this.Amount + "&orderId=" +
-                this.OrderId + "&orderInfo=" +
-                this.OrderInfo + "&returnUrl=" +
-                this.ReturnUrl + "&notifyUrl=" +
-                this.NotifyUrl + "&extraData=" +
-                this.ExtraData;
-
-                MoMoSecurity crypto = new MoMoSecurity();
-
-                //sign signature SHA256
-                this.Signature = crypto.signSHA256(rawHash, Constants.SharedContants.SERECT_KEY);
-            }
-        }
-
         public JObject getDataJsonObject()
         {
+            string rawHash = "partnerCode=" +
+            this.PartnerCode + "&accessKey=" +
+            this.AccessKey + "&requestId=" +
+            this.RequestId + "&amount=" +
+            this.Amount + "&orderId=" +
+            this.OrderId + "&orderInfo=" +
+            this.OrderInfo + "&returnUrl=" +
+            this.ReturnUrl + "&notifyUrl=" +
+            this.NotifyUrl + "&extraData=" +
+            this.ExtraData;
+
+            //sign signature SHA256
+            string SignatureScripted = this.crypto.signSHA256(rawHash, Constants.SharedContants.SERECT_KEY);
+
             return new JObject
             {
                 { "partnerCode", this.PartnerCode },
@@ -62,7 +55,7 @@ namespace OnlineShop.Common.Models.OrderAPI.ReqModels.MomoPayment
                 { "notifyUrl", this.NotifyUrl },
                 { "extraData", this.ExtraData },
                 { "requestType", this.RequestType },
-                { "signature", this.Signature }
+                { "signature", SignatureScripted }
             };
         }
     }
