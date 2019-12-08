@@ -8,7 +8,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
->>>>>>> e5732521051317c1619bf7ecacb16b5b2cb3c05a
+using System;
 
 namespace OnlineShop.OrderAPI.Controllers
 {
@@ -62,7 +62,6 @@ namespace OnlineShop.OrderAPI.Controllers
                     }
                 }
                 Console.WriteLine(jsonresponse);
-                Console.ReadLine();
                 //todo parse it
                 return jsonresponse;
                 //return new MomoResponse(mtid, jsonresponse);
