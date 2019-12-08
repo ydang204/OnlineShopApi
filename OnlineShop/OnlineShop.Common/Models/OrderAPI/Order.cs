@@ -7,7 +7,16 @@ namespace OnlineShop.Common.Models.OrderAPI
         Pending,
         InProgress,
         Completed,
-        Canclled
+        Canceled,
+        Delivering,
+        WaitingPayment,
+        PaymentFailed
+    }
+
+    public enum PaymentMethod
+    {
+        COD,
+        MoMo,
     }
 
     public class Order : BaseEntity<int>
@@ -17,6 +26,8 @@ namespace OnlineShop.Common.Models.OrderAPI
         public int ToTal { get; set; }
 
         public OrderStatus Status { get; set; }
+
+        public PaymentMethod PaymentMethod { get; set; }
 
         public ICollection<OrderDetails> OrderDetails { get; set; }
     }

@@ -5,7 +5,7 @@ namespace OnlineShop.Common.Models.OrderAPI.ReqModels.MomoPayment
 {
     public class PaymentDataReqModel
     {
-        private MoMoSecurity crypto = new MoMoSecurity();
+        private readonly MoMoSecurity crypto = new MoMoSecurity();
 
         public string AccessKey { get; set; }
 
@@ -27,7 +27,7 @@ namespace OnlineShop.Common.Models.OrderAPI.ReqModels.MomoPayment
 
         public string ExtraData { get; set; }
 
-        public JObject getDataJsonObject()
+        public JObject GetDataJsonObject()
         {
             string rawHash = "partnerCode=" +
             this.PartnerCode + "&accessKey=" +

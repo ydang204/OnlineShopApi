@@ -14,7 +14,7 @@ namespace OnlineShop.OrderAPI.Controllers
 {
     [Route("api/momo-payment")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class MomoPaymentController : ControllerBase
     {
         public MomoPaymentController()
@@ -22,10 +22,10 @@ namespace OnlineShop.OrderAPI.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public string CallPayment([FromBody]PaymentDataReqModel reqModel)
         {
-            return sendPaymentRequest(SharedContants.MOMO_ENDPOINT, reqModel.getDataJsonObject().ToString());
+            return sendPaymentRequest(SharedContants.MOMO_ENDPOINT, reqModel.GetDataJsonObject().ToString());
         }
 
         private string sendPaymentRequest(string endpoint, string postJsonString)

@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using OnlineShop.Common.Extensions;
 using OnlineShop.Common.Middlewares;
 using OnlineShop.OrderAPI.Models;
+using OnlineShop.OrderAPI.ServiceInterfaces;
+using OnlineShop.OrderAPI.Services;
 
 namespace OnlineShop.OrderAPI
 {
@@ -27,6 +29,9 @@ namespace OnlineShop.OrderAPI
                    .AddCustomJwtToken(Configuration)
                    .AddCustomAutoMapper()
                    .AddCustomDbContext<OrderContext>(Configuration);
+
+
+            services.AddScoped<IOrderService, OrderService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
