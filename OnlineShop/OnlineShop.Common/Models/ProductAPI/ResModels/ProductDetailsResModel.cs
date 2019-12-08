@@ -4,6 +4,6 @@
     {
         public BrandResModel Brand { get; set; }
 
-        public CategoryResModel Category { get; set; }
+        public ChildCategoryResModel Category { get; set; }
     }
 }
