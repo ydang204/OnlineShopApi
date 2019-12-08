@@ -58,6 +58,18 @@ namespace OnlineShop.ProductAPI.Services
             await _context.SaveChangesAsync();
         }
 
+        public async Task<List<ProductResModel>> GetProductByIdsAsync(List<int> ids)
+        {
+            var products = await _context.Products
+                                         .Include(p => p.Category)
+                                         .Include(p => p.Brand)
+                                         .Include(p => p.ProductImages)
+                                         .Where(p => ids.Contains(p.Id))
+                                         .ToListAsync();
+
+            return _mapper.Map<List<Product>, List<ProductResModel>>(products);
+        }
+
         public async Task<ProductDetailsResModel> GetProductDetailsAsync(int id)
         {
             var product = await _context.Products
@@ -107,6 +119,11 @@ namespace OnlineShop.ProductAPI.Services
             if (model.CategoryId.HasValue)
             {
                 query = query.Where(p => p.CategoryId == model.CategoryId);
+            }
+
+            if (!string.IsNullOrEmpty(model.Name))
+            {
+                query = query.Where(p => p.Name.ToLower().Contains(model.Name.ToLower()));
             }
 
             query = CommonFunctions.SortQuery(model, query);

@@ -62,5 +62,12 @@ namespace OnlineShop.ProductAPI.Controllers
         {
             return await _productService.SearchProductsAsync(model);
         }
-    }
+
+        [HttpGet("get-by-ids")]
+
+        public async Task<List<ProductResModel>> GetProductsByIds([FromQuery]List<int> ids)
+        {
+            return await _productService.GetProductByIdsAsync(ids);
+        }
+     }
 }
