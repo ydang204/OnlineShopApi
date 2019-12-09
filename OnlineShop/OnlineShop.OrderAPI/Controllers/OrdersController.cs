@@ -6,6 +6,7 @@ using OnlineShop.Common.Models.OrderAPI;
 using OnlineShop.Common.Models.OrderAPI.ReqModels.Orders;
 using OnlineShop.Common.Models.OrderAPI.ResModels;
 using OnlineShop.OrderAPI.ServiceInterfaces;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace OnlineShop.OrderAPI.Controllers
@@ -29,6 +30,11 @@ namespace OnlineShop.OrderAPI.Controllers
         {
             var order = _mapper.Map<CreateOrderReqModel, Order>(model);
             return await _orderService.CreateOrderAsync(order);
+        }
+
+        public async Task<List<OrderDetailsResModel>> GetOrder([FromQuery] GetOrderReqModel model) 
+        {
+            return await _orderService.GetOrdersAsync(model);
         }
     }
 }

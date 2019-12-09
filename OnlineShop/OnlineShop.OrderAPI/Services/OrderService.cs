@@ -1,8 +1,10 @@
 ﻿using OnlineShop.Common.Models.OrderAPI;
+using OnlineShop.Common.Models.OrderAPI.ReqModels.Orders;
 using OnlineShop.Common.Models.OrderAPI.ResModels;
 using OnlineShop.Common.Utitlities;
 using OnlineShop.OrderAPI.Models;
 using OnlineShop.OrderAPI.ServiceInterfaces;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace OnlineShop.OrderAPI.Services
@@ -38,6 +40,11 @@ namespace OnlineShop.OrderAPI.Services
             }
 
             return result;
+        }
+
+        public Task<List<OrderDetailsResModel>> GetOrdersAsync(GetOrderReqModel model)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
