@@ -4,8 +4,6 @@ namespace OnlineShop.Common.Models.OrderAPI.ReqModels.Orders
 {
     public class CreateOrderReqModel
     {
-        public int UserId { get; set; }
-
         public string DeliveryAddress { get; set; }
 
         public string PhoneNumber { get; set; }

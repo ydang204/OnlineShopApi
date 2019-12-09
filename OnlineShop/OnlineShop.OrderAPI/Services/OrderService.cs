@@ -40,7 +40,7 @@ namespace OnlineShop.OrderAPI.Services
                 result.Status = OrderStatus.WaitingPayment;
                 await _context.Orders.AddAsync(order);
                 await _context.SaveChangesAsync();
-
+                order.ToTal = 100000;
                 var paymentModel = _mapper.Map<Order, PaymentReqModel>(order);
 
                 result.PaymentUrl = await _moMoPaymentHelper.CreatePaymentRequestAync(paymentModel);
