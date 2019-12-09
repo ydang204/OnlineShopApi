@@ -12,6 +12,8 @@ namespace OnlineShop.Common.Models.OrderAPI.ReqModels.Orders
         
         public string Note { get; set; }
 
+        public decimal Total { get; set; }
+
         public PaymentMethod PaymentMethod { get; set; }
 
         public List<CreateOrderProductReqModel> Products { get; set; }
