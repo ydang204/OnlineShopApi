@@ -10,6 +10,7 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
 using OnlineShop.Common.Constants;
 using OnlineShop.Common.SettingOptions;
+using OnlineShop.Common.Utitlities;
 using System;
 using System.IO;
 using System.Reflection;
@@ -143,6 +144,12 @@ namespace OnlineShop.Common.Extensions
                 };
             });
             services.AddHttpContextAccessor();
+
+            // Add configuration model
+            services.Configure<SiteMapUrlOptions>(configuration.GetSection("SiteMapUrl"));
+            services.AddScoped<ApiBuilderHelper>();
+            services.AddScoped<ApiRequestHelper>();
+
             return services;
         }
 
