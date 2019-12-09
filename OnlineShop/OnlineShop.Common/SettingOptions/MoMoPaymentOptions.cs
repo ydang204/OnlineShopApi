@@ -1,6 +1,6 @@
 ﻿namespace OnlineShop.Common.SettingOptions
 {
-    public class MoMoPaymentOption
+    public class MoMoPaymentOptions
     {
         public string AccessKey { get; set; }
 
@@ -14,6 +14,6 @@
 
         public string SecrectKey { get; set; }
 
-        public string MoMoPayMentEndpoint { get; set; }
+        public string MoMoPaymentEndpoint { get; set; }
     }
 }

@@ -32,6 +32,7 @@ namespace OnlineShop.OrderAPI.Controllers
             return await _orderService.CreateOrderAsync(order);
         }
 
+        [HttpGet]
         public async Task<List<OrderDetailsResModel>> GetOrder([FromQuery] GetOrderReqModel model) 
         {
             return await _orderService.GetOrdersAsync(model);

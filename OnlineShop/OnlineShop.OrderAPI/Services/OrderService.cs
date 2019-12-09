@@ -1,4 +1,6 @@
-﻿using OnlineShop.Common.Models.OrderAPI;
+﻿using AutoMapper;
+using OnlineShop.Common.Models.OrderAPI;
+using OnlineShop.Common.Models.OrderAPI.ReqModels.MomoPayment;
 using OnlineShop.Common.Models.OrderAPI.ReqModels.Orders;
 using OnlineShop.Common.Models.OrderAPI.ResModels;
 using OnlineShop.Common.Utitlities;
@@ -13,11 +15,13 @@ namespace OnlineShop.OrderAPI.Services
     {
         private readonly OrderContext _context;
         private readonly MoMoPaymentHelper _moMoPaymentHelper;
+        private readonly IMapper _mapper;
 
-        public OrderService(OrderContext context, MoMoPaymentHelper moMoPaymentHelper)
+        public OrderService(OrderContext context, MoMoPaymentHelper moMoPaymentHelper, IMapper mapper)
         {
             _context = context;
             _moMoPaymentHelper = moMoPaymentHelper;
+            _mapper = mapper;
         }
 
         public async Task<CreateOrderResModel> CreateOrderAsync(Order order)
@@ -36,7 +40,10 @@ namespace OnlineShop.OrderAPI.Services
                 result.Status = OrderStatus.WaitingPayment;
                 await _context.Orders.AddAsync(order);
                 await _context.SaveChangesAsync();
-                result.PaymentUrl = await _moMoPaymentHelper.CreatePaymentRequestAync(order);
+
+                var paymentModel = _mapper.Map<Order, PaymentReqModel>(order);
+
+                result.PaymentUrl = await _moMoPaymentHelper.CreatePaymentRequestAync(paymentModel);
             }
 
             return result;
