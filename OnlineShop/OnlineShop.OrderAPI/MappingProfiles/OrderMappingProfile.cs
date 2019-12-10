@@ -2,6 +2,7 @@
 using OnlineShop.Common.Models.OrderAPI;
 using OnlineShop.Common.Models.OrderAPI.ReqModels.MomoPayment;
 using OnlineShop.Common.Models.OrderAPI.ReqModels.Orders;
+using OnlineShop.Common.Models.OrderAPI.ResModels;
 
 namespace OnlineShop.OrderAPI.MappingProfiles
 {
@@ -12,6 +13,8 @@ namespace OnlineShop.OrderAPI.MappingProfiles
             CreateMap<CreateOrderReqModel, Order>();
 
             CreateMap<PaymentReqModel, MoMoPaymentReqModel>();
+
+            CreateMap<Order, OrderDetailsResModel>();
 
             CreateMap<Order, PaymentReqModel>()
                 .ForMember(des => des.ExtraData, opt => opt.MapFrom(src => src.Email))

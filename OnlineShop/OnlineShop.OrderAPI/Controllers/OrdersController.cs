@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OnlineShop.Common.Constants;
 using OnlineShop.Common.Extensions;
+using OnlineShop.Common.Models.Common.ResModels;
 using OnlineShop.Common.Models.OrderAPI;
 using OnlineShop.Common.Models.OrderAPI.ReqModels.Orders;
 using OnlineShop.Common.Models.OrderAPI.ResModels;
@@ -36,7 +37,7 @@ namespace OnlineShop.OrderAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<List<OrderDetailsResModel>> GetOrder([FromQuery] GetOrderReqModel model) 
+        public async Task<BasePagingResponse<OrderDetailsResModel>> GetOrder([FromQuery] GetOrderReqModel model) 
         {
             return await _orderService.GetOrdersAsync(model);
         }
