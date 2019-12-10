@@ -23,6 +23,8 @@ namespace OnlineShop.Common.Models.OrderAPI
     {
         public int UserId { get; set; }
 
+        public string Receiver { get; set; }
+
         public string DeliveryAddress { get; set; }
 
         public string PhoneNumber { get; set; }
