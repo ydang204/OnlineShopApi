@@ -20,5 +20,8 @@ namespace OnlineShop.UserAPI.ServiceInterfaces
         /// <param name="model"></param>
         /// <returns></returns>
         Task ForgotPasswordAsync(ForgotPasswordReqModel model);
+
+
+        Task<LoginResModel> ExternalLoginAsync(ExternalLoginReqModel model);
     }
 }

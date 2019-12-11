@@ -26,15 +26,15 @@ namespace OnlineShop.NotificationAPI.Migrations
 
                     b.Property<int?>("AccountId");
 
-                    b.Property<DateTime>("CreatedAt");
+                    b.Property<DateTime?>("CreatedAt");
 
-                    b.Property<int>("CreatedBy");
+                    b.Property<int?>("CreatedBy");
 
                     b.Property<string>("DeviceUniqueIdentify");
 
-                    b.Property<DateTime>("ModifiedAt");
+                    b.Property<DateTime?>("ModifiedAt");
 
-                    b.Property<int>("ModifiedBy");
+                    b.Property<int?>("ModifiedBy");
 
                     b.Property<int>("ObjectStatus");
 
@@ -55,9 +55,9 @@ namespace OnlineShop.NotificationAPI.Migrations
 
                     b.Property<int?>("AccountId");
 
-                    b.Property<DateTime>("CreatedAt");
+                    b.Property<DateTime?>("CreatedAt");
 
-                    b.Property<int>("CreatedBy");
+                    b.Property<int?>("CreatedBy");
 
                     b.Property<string>("Data");
 
@@ -65,9 +65,9 @@ namespace OnlineShop.NotificationAPI.Migrations
 
                     b.Property<string>("Message");
 
-                    b.Property<DateTime>("ModifiedAt");
+                    b.Property<DateTime?>("ModifiedAt");
 
-                    b.Property<int>("ModifiedBy");
+                    b.Property<int?>("ModifiedBy");
 
                     b.Property<int>("ObjectStatus");
 

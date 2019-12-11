@@ -27,17 +27,17 @@ namespace OnlineShop.UserAPI.Migrations
 
                     b.Property<string>("Address");
 
-                    b.Property<DateTime>("CreatedAt");
+                    b.Property<DateTime?>("CreatedAt");
 
-                    b.Property<int>("CreatedBy");
+                    b.Property<int?>("CreatedBy");
 
                     b.Property<string>("Email");
 
                     b.Property<string>("FullName");
 
-                    b.Property<DateTime>("ModifiedAt");
+                    b.Property<DateTime?>("ModifiedAt");
 
-                    b.Property<int>("ModifiedBy");
+                    b.Property<int?>("ModifiedBy");
 
                     b.Property<int>("ObjectStatus");
 
@@ -71,13 +71,13 @@ namespace OnlineShop.UserAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreatedAt");
+                    b.Property<DateTime?>("CreatedAt");
 
-                    b.Property<int>("CreatedBy");
+                    b.Property<int?>("CreatedBy");
 
-                    b.Property<DateTime>("ModifiedAt");
+                    b.Property<DateTime?>("ModifiedAt");
 
-                    b.Property<int>("ModifiedBy");
+                    b.Property<int?>("ModifiedBy");
 
                     b.Property<string>("Name");
 
@@ -94,13 +94,13 @@ namespace OnlineShop.UserAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreatedAt");
+                    b.Property<DateTime?>("CreatedAt");
 
-                    b.Property<int>("CreatedBy");
+                    b.Property<int?>("CreatedBy");
 
-                    b.Property<DateTime>("ModifiedAt");
+                    b.Property<DateTime?>("ModifiedAt");
 
-                    b.Property<int>("ModifiedBy");
+                    b.Property<int?>("ModifiedBy");
 
                     b.Property<string>("Name");
 

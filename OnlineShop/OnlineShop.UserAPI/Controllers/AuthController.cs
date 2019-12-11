@@ -36,6 +36,13 @@ namespace OnlineShop.UserAPI.Controllers
             return await _authService.LoginAsync(model);
         }
 
+        [HttpPost("external-login")]
+        public async Task<LoginResModel> ExternalLogin(ExternalLoginReqModel model)
+        {
+            return await _authService.ExternalLoginAsync(model);
+        }
+
+
         [HttpPost("forgot-password")]
         public async Task<IActionResult> ForgotPassword(ForgotPasswordReqModel model)
         {

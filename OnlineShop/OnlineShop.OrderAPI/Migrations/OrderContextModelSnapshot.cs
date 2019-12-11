@@ -25,17 +25,17 @@ namespace OnlineShop.OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreatedAt");
+                    b.Property<DateTime?>("CreatedAt");
 
-                    b.Property<int>("CreatedBy");
+                    b.Property<int?>("CreatedBy");
 
                     b.Property<string>("DeliveryAddress");
 
                     b.Property<string>("Email");
 
-                    b.Property<DateTime>("ModifiedAt");
+                    b.Property<DateTime?>("ModifiedAt");
 
-                    b.Property<int>("ModifiedBy");
+                    b.Property<int?>("ModifiedBy");
 
                     b.Property<string>("Note");
 
@@ -64,13 +64,13 @@ namespace OnlineShop.OrderAPI.Migrations
 
                     b.Property<int>("Count");
 
-                    b.Property<DateTime>("CreatedAt");
+                    b.Property<DateTime?>("CreatedAt");
 
-                    b.Property<int>("CreatedBy");
+                    b.Property<int?>("CreatedBy");
 
-                    b.Property<DateTime>("ModifiedAt");
+                    b.Property<DateTime?>("ModifiedAt");
 
-                    b.Property<int>("ModifiedBy");
+                    b.Property<int?>("ModifiedBy");
 
                     b.Property<int>("ObjectStatus");
 

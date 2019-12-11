@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using OnlineShop.ProductAPI.Models;
+using OnlineShop.OrderAPI.Models;
 
-namespace OnlineShop.ProductAPI.Migrations
+namespace OnlineShop.OrderAPI.Migrations
 {
-    [DbContext(typeof(ProductContext))]
-    partial class ProductContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(OrderContext))]
+    [Migration("20191211000828_UpdateBaseEntity")]
+    partial class UpdateBaseEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,7 +21,7 @@ namespace OnlineShop.ProductAPI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("OnlineShop.Common.Models.ProductAPI.Brand", b =>
+            modelBuilder.Entity("OnlineShop.Common.Models.OrderAPI.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -29,26 +31,40 @@ namespace OnlineShop.ProductAPI.Migrations
 
                     b.Property<int?>("CreatedBy");
 
+                    b.Property<string>("DeliveryAddress");
+
+                    b.Property<string>("Email");
+
                     b.Property<DateTime?>("ModifiedAt");
 
                     b.Property<int?>("ModifiedBy");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Note");
 
                     b.Property<int>("ObjectStatus");
 
-                    b.Property<string>("SlugName");
+                    b.Property<int>("PaymentMethod");
+
+                    b.Property<string>("PhoneNumber");
+
+                    b.Property<int>("Status");
+
+                    b.Property<decimal>("ToTal");
+
+                    b.Property<int>("UserId");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Brands");
+                    b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("OnlineShop.Common.Models.ProductAPI.Category", b =>
+            modelBuilder.Entity("OnlineShop.Common.Models.OrderAPI.OrderDetails", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Count");
 
                     b.Property<DateTime?>("CreatedAt");
 
@@ -58,83 +74,17 @@ namespace OnlineShop.ProductAPI.Migrations
 
                     b.Property<int?>("ModifiedBy");
 
-                    b.Property<string>("Name");
-
                     b.Property<int>("ObjectStatus");
 
-                    b.Property<int?>("ParentId");
-
-                    b.Property<string>("SlugName");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ParentId");
-
-                    b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("OnlineShop.Common.Models.ProductAPI.Product", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BrandId");
-
-                    b.Property<int>("CategoryId");
-
-                    b.Property<DateTime?>("CreatedAt");
-
-                    b.Property<int?>("CreatedBy");
-
-                    b.Property<DateTime?>("ModifiedAt");
-
-                    b.Property<int?>("ModifiedBy");
-
-                    b.Property<string>("Name");
-
-                    b.Property<int>("ObjectStatus");
-
-                    b.Property<decimal>("Price");
-
-                    b.Property<string>("SlugName");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BrandId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("OnlineShop.Common.Models.ProductAPI.ProductImage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime?>("CreatedAt");
-
-                    b.Property<int?>("CreatedBy");
-
-                    b.Property<string>("ImageUrl");
-
-                    b.Property<DateTime?>("ModifiedAt");
-
-                    b.Property<int?>("ModifiedBy");
-
-                    b.Property<int>("ObjectStatus");
+                    b.Property<int?>("OrderId");
 
                     b.Property<int>("ProductId");
 
-                    b.Property<string>("PublicId");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("OrderId");
 
-                    b.ToTable("ProductImages");
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("TrackerEnabledDbContext.Common.Models.AuditLog", b =>
@@ -204,32 +154,11 @@ namespace OnlineShop.ProductAPI.Migrations
                     b.ToTable("LogMetadata");
                 });
 
-            modelBuilder.Entity("OnlineShop.Common.Models.ProductAPI.Category", b =>
+            modelBuilder.Entity("OnlineShop.Common.Models.OrderAPI.OrderDetails", b =>
                 {
-                    b.HasOne("OnlineShop.Common.Models.ProductAPI.Category", "Parent")
-                        .WithMany("Categories")
-                        .HasForeignKey("ParentId");
-                });
-
-            modelBuilder.Entity("OnlineShop.Common.Models.ProductAPI.Product", b =>
-                {
-                    b.HasOne("OnlineShop.Common.Models.ProductAPI.Brand", "Brand")
-                        .WithMany("Products")
-                        .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("OnlineShop.Common.Models.ProductAPI.Category", "Category")
-                        .WithMany("Products")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("OnlineShop.Common.Models.ProductAPI.ProductImage", b =>
-                {
-                    b.HasOne("OnlineShop.Common.Models.ProductAPI.Product", "Product")
-                        .WithMany("ProductImages")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("OnlineShop.Common.Models.OrderAPI.Order")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderId");
                 });
 
             modelBuilder.Entity("TrackerEnabledDbContext.Common.Models.AuditLogDetail", b =>

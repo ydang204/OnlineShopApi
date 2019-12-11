@@ -31,6 +31,31 @@ namespace OnlineShop.UserAPI.Services
             _tokenOptions = tokenOptions.Value;
         }
 
+        public async Task<LoginResModel> ExternalLoginAsync(ExternalLoginReqModel model)
+        {
+            var user = await _context.Accounts.FirstOrDefaultAsync(a => a.UserName == model.Email);
+
+            if (user == null)
+            {
+                var registerModel = new RegisterReqModel
+                {
+                    Email = model.Email,
+                    UserName = model.Email,
+                    Password = model.ExternalId,
+                    FullName = model.FullName
+                };
+                await RegisterAsync(registerModel);
+
+            }
+
+            var loginModel = new LoginReqModel()
+            {
+                Password = model.ExternalId,
+                UserName = model.Email
+            };
+            return await LoginAsync(loginModel);
+        }
+
         public Task ForgotPasswordAsync(ForgotPasswordReqModel model)
         {
             throw new NotImplementedException();

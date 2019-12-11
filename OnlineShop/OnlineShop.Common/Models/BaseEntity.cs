@@ -7,13 +7,13 @@ namespace OnlineShop.Common.Models
     {
         public T Id { get; set; }
 
-        public int CreatedBy { get; set; }
+        public int? CreatedBy { get; set; }
 
-        public DateTime CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
 
-        public int ModifiedBy { get; set; }
+        public int? ModifiedBy { get; set; }
 
-        public DateTime ModifiedAt { get; set; }
+        public DateTime? ModifiedAt { get; set; }
 
         public ObjectStatus ObjectStatus { get; set; }
     }
