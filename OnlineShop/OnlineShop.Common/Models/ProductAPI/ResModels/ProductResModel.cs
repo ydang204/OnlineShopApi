@@ -4,6 +4,8 @@ namespace OnlineShop.Common.Models.ProductAPI.ResModels
 {
     public class ProductResModel
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         public decimal Price { get; set; }

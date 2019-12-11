@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OnlineShop.Common.Extensions;
 using OnlineShop.Common.Middlewares;
+using OnlineShop.Common.SettingOptions;
+using OnlineShop.Common.Utitlities;
 using OnlineShop.OrderAPI.Models;
 using OnlineShop.OrderAPI.ServiceInterfaces;
 using OnlineShop.OrderAPI.Services;
@@ -30,7 +32,8 @@ namespace OnlineShop.OrderAPI
                    .AddCustomAutoMapper()
                    .AddCustomDbContext<OrderContext>(Configuration);
 
-
+            services.Configure<MoMoPaymentOptions>(Configuration.GetSection("MoMoPayment"));
+            services.AddScoped<MoMoPaymentHelper>();
             services.AddScoped<IOrderService, OrderService>();
         }
 
@@ -64,7 +67,6 @@ namespace OnlineShop.OrderAPI
             app.UseMvc();
 
             UpdateDatabase(app);
-
         }
 
         private static void UpdateDatabase(IApplicationBuilder app)

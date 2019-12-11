@@ -2,23 +2,33 @@
 using Microsoft.AspNetCore.Mvc;
 using OnlineShop.Common.Constants;
 using OnlineShop.Common.Models.OrderAPI.ReqModels.MomoPayment;
-using System.Threading.Tasks;   
 using OnlineShop.Common.Models.OrderAPI.ResModels;
+using OnlineShop.Common.Utitlities;
+using System;
 using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using System;
 
 namespace OnlineShop.OrderAPI.Controllers
 {
     [Route("api/momo-payment")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class MomoPaymentController : ControllerBase
     {
-        public MomoPaymentController()
+        private readonly MoMoPaymentHelper _moMoPaymentHelper;
+
+        public MomoPaymentController(MoMoPaymentHelper moMoPaymentHelper)
         {
+            _moMoPaymentHelper = moMoPaymentHelper;
+        }
+
+        [HttpPost("test")]
+        public async Task<IActionResult> TestPayment(PaymentReqModel model)
+        {
+            var response = await _moMoPaymentHelper.CreatePaymentRequestAync(model);
+            return Ok(response);
         }
 
         [HttpPost]

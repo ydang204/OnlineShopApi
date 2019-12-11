@@ -4,7 +4,7 @@ namespace OnlineShop.Common.Models.OrderAPI.ReqModels.Orders
 {
     public class CreateOrderReqModel
     {
-        public int UserId { get; set; }
+        public string  Receiver { get; set; }
 
         public string DeliveryAddress { get; set; }
 
@@ -13,6 +13,8 @@ namespace OnlineShop.Common.Models.OrderAPI.ReqModels.Orders
         public string Email { get; set; }
         
         public string Note { get; set; }
+
+        public decimal Total { get; set; }
 
         public PaymentMethod PaymentMethod { get; set; }
 
